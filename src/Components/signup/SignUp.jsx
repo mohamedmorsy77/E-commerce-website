@@ -41,10 +41,10 @@ function SignUp() {
       <ToastContainer />
       <div className="container">
         <div className="row m- px-4 align-items-center">
-          <div className="col-6 signup-img">
+          <div className="col-12 col-lg-6  signup-img text-center text-lg-center mt-4">
             <img src={signUp} alt="sign-up-image" />
           </div>
-          <div className="col-6">
+          <div className="col-12 col-lg-6 mt-4">
             <h2>Get Start Shopping</h2>
             <p className="">
               {" "}
