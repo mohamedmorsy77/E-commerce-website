@@ -1,0 +1,15 @@
+header {
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  border-bottom: 2px solid #dfe2e1;
+  width: 100%;
+  .navbar-toggler {
+    border: 2px solid rgb(21, 212, 21);
+  }
+  ul {
+    li {
+      font-size: 1.2rem;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.footer {
+  background-color: #f0f3f2;
+  .d-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+   .info {
+    a:hover {
+        color: #0aad0a !important;
+        font-weight: 700;
+        transform: scale(1.01);
+        -webkit-transform: scale(1.01);
+        -moz-transform: scale(1.01);
+        -ms-transform: scale(1.01);
+        -o-transform: scale(1.01);
+}
+   }
+  }
+
+  .social {
+    li {
+      a {
+        border: 1px solid #ccc;
+        color: rgba(108, 117, 125, 1);
+      }
+      a:hover {
+        border-color: #0aad0a;
+        color: #0aad0a;
+      }
+    }
+  }
+}
