@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import { loginSchema } from "../validationSchema/ValidationSchema";
 import login from "../../assets/images/signin-g.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authLogin } from "../../network/AuthApi";
 import InputField from "../reusable/InputField";
+import { PulseLoader } from "react-spinners";
 function Login() {
+  const redirectedRef = useRef(false);
+  const [isLoading, SetLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -18,16 +22,27 @@ function Login() {
     validateOnChange: true,
     validateOnBlur: true,
     onSubmit: (values, formikHelper) => {
+      SetLoading(true);
       dispatch(authLogin(values)).then((data) => {
         if (data.payload.message === "success") {
-          toast.success("Login successful!");
-          formikHelper.resetForm();
+          redirectedRef.current = true;
+          SetLoading(false);
+          setTimeout(() => {
+            formikHelper.resetForm();
+            navigate("/");
+            toast.success("Login successful!");
+          }, 500);
+         
+        
+         
         } else {
+          SetLoading(false);
           toast.error(data.payload.message);
         }
       });
     },
   });
+
   return (
     <section className="sign">
       <ToastContainer />
@@ -67,9 +82,9 @@ function Login() {
               </div>
               <button
                 type="submit"
-                className="btn btn-success fw-medium w-100 mt-4"
+                className="btn btn-success fw-medium w-100 mt-4 d-flex justify-content-center gap-2 align-items-center"
               >
-                Login
+                Login {isLoading && <PulseLoader color="#69ca46" size={10} />}
               </button>
             </form>
             <p className="mt-2">

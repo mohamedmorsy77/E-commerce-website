@@ -10,13 +10,20 @@ import {
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    token: null,
-    user: null,
+    token: localStorage.getItem("token") || "",
+    user: JSON.parse(localStorage.getItem("user")) || "",
     loading: null,
     error: null,
     status: null,
   },
-  reducers: {},
+  reducers: {
+    logOut: (state) => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      state.token = "";
+      state.user = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(authSignUp.pending, (state) => {
@@ -33,14 +40,16 @@ export const authSlice = createSlice({
         state.error = action.error.message;
         state.status = action.payload.message;
       })
-      .addCase(authLogin.pending, (state) => {
+      .addCase(authLogin.pending, (state, action) => {
         state.loading = true;
       })
       .addCase(authLogin.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
-        localStorage.setItem("token", state.token);
         state.user = action.payload.user;
+
+        localStorage.setItem("token", state.token);
+        localStorage.setItem("user", JSON.stringify(state.user));
       })
       .addCase(authLogin.rejected, (state, action) => {
         state.loading = false;
@@ -52,8 +61,8 @@ export const authSlice = createSlice({
       .addCase(authResetPassword.fulfilled, (state, action) => {
         state.status = action.payload.message;
         state.loading = false;
-      }).addCase(authResetPassword.rejected, (state, action) => {
-        console.log(action);
+      })
+      .addCase(authResetPassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload.message;
       })
@@ -61,8 +70,6 @@ export const authSlice = createSlice({
         state.loading = false;
       })
       .addCase(authResetCode.fulfilled, (state, action) => {
-        console.log(action);
-
         if (action.payload.status) {
           state.status = action.payload.status;
         } else {
@@ -80,10 +87,7 @@ export const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(createNewPassword.fulfilled, (state, action) => {
-        console.log(action);
         state.loading = false;
-        state.token = action.payload.token;
-        localStorage.setItem("token", state.token);
       })
       .addCase(createNewPassword.rejected, (state, action) => {
         console.log(action);
@@ -92,6 +96,7 @@ export const authSlice = createSlice({
   },
 });
 
+export const { logOut } = authSlice.actions;
 export {
   authSignUp,
   authLogin,

@@ -31,18 +31,18 @@ function Footer() {
           <div className="col-12 col-xl-5">
               <ul className="list-unstyled m-0 d-flex gap-2 align-items-center justify-content-center justify-content-md-start">
                 <li className="fw-bold">Payment Partners</li>
-                <li className="fw-bold"><Link><img src={amazonPay} alt="amazonPay" /></Link></li>
-                <li className="fw-bold"><Link><img src={americanExpress} alt="americanExpress" /></Link></li>
-                <li className="fw-bold"><Link><img src={mastercard} alt="mastercard" /></Link></li>
-                <li className="fw-bold"><Link><img src={paypal} alt="paypal" /></Link></li>
-                <li className="fw-bold"><Link><img src={visa} alt="visa" /></Link></li>
+                <li className="fw-bold"><Link aria-label="amazon pay"><img src={amazonPay} alt="amazonPay" /></Link></li>
+                <li className="fw-bold"><Link aria-label="american express"><img src={americanExpress} alt="americanExpress" /></Link></li>
+                <li className="fw-bold"><Link aria-label="mastercard"><img src={mastercard} alt="mastercard" /></Link></li>
+                <li className="fw-bold"><Link aria-label="paypal"><img src={paypal} alt="paypal" /></Link></li>
+                <li className="fw-bold"><Link aria-label="visa"><img src={visa} alt="visa" /></Link></li>
               </ul>
           </div>
           <div className="col-12 col-xl-7 d-flex flex-column flex-md-row align-items-center justify-content-start mt-4 mt-xl-0 justify-content-xl-end gap-3">
             <p className="m-0 fw-medium">Get deliveries with FreshCart</p>
             <ul className="m-0 list-unstyled d-flex align-items-center gap-2">
-              <li className="fw-bold"><Link className="nav-link text-secondary text-decoration-none"><img src={appleStore} alt="appleStore" /></Link></li>
-              <li className="fw-bold"><Link className="nav-link text-secondary text-decoration-none"><img src={googlePlay} alt="googlePlay" /></Link></li>
+              <li className="fw-bold"><Link aria-label="apple store" className="nav-link text-secondary text-decoration-none"><img src={appleStore} alt="appleStore" /></Link></li>
+              <li className="fw-bold"><Link aria-label="google play" className="nav-link text-secondary text-decoration-none"><img src={googlePlay} alt="googlePlay" /></Link></li>
   
             </ul>
 
@@ -58,9 +58,9 @@ function Footer() {
          <div className="col-12 col-lg-4">
             <ul className="list-inline m-0 mt-3 mt-lg-0 d-flex gap-2 align-items-center justify-content-start justify-content-lg-end social">
               <li className="text-secondary me-4">Follow us on</li>
-              <li className="list-inline-item  d-flex align-items-center justify-content-center"><Link className="nav-link transition rounded-2  px-2 py-1 text-decoration-none" to="#"><i className="ri-facebook-circle-fill"></i></Link></li>
-              <li className="list-inline-item "><Link className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-twitter-fill"></i></Link></li>
-              <li className="list-inline-item "><Link className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-instagram-line"></i></Link></li>
+              <li className="list-inline-item  d-flex align-items-center justify-content-center"><Link aria-label="facebook" className="nav-link transition rounded-2  px-2 py-1 text-decoration-none" to="#"><i className="ri-facebook-circle-fill"></i></Link></li>
+              <li className="list-inline-item "><Link aria-label="twitter" className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-twitter-fill"></i></Link></li>
+              <li className="list-inline-item "><Link aria-label="instagram" className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-instagram-line"></i></Link></li>
             </ul>
          </div>
         </div>

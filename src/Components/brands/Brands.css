@@ -1,0 +1,7 @@
+.brands {
+    .brands-info {
+        border: 2px solid rgb(43, 233, 43);
+        box-shadow: 0 0 3px 3px rgba(209, 207, 207, 0.2);
+        cursor: pointer;
+    }
+}

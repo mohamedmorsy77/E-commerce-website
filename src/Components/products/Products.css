@@ -1,0 +1,120 @@
+.products {
+  .product-item {
+    overflow: hidden;
+    cursor: pointer;
+    /* .add-to-cart {
+      transform: translateY(56px);
+      -webkit-transform: translateY(56px);
+      -moz-transform: translateY(56px);
+      -ms-transform: translateY(56px);
+      -o-transform: translateY(56px);
+    } */
+    .product-action {
+      top: 19px;
+      /* right: -60px; */
+      right: 15px;
+      button {
+        background-color: #fff;
+        box-shadow: 0 2px 4px -1px rgba(145, 158, 171, 0.2),
+          0 4px 5px 0 rgba(145, 158, 171, 0.14),
+          0 1px 10px 0 rgba(145, 158, 171, 0.12);
+      }
+      button:hover {
+        background-color: rgb(24, 196, 24);
+        color: white;
+      }
+
+    }
+    .product-title {
+      font-size: 0.9em;
+    }
+    .product-image {
+      height: 230px;
+    }
+    .price {
+      .stock {
+        font-size: 0.8rem;
+      }
+    }
+    .sale {
+      top: 20px;
+      left: 20px;
+      animation: scale 1s ease-in  infinite alternate-reverse;
+      -webkit-animation: scale 1s ease-in  infinite alternate-reverse;
+}
+  }
+}
+.product-item:hover {
+  transform: scale(1.01);
+}
+.best-seller-products .product-item:hover {
+  transform: none;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+}
+.product-item:hover,
+.best-seller-products .product-item:hover {
+  border: 2px solid rgb(43, 233, 43);
+  box-shadow: 0 0 3px 3px rgba(209, 207, 207, 0.2);
+  z-index: 2;
+}
+
+.half-star {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.best-seller-products {
+  .slider-container {
+    .slick-dots {
+      visibility: hidden;
+    }
+  }
+}
+.product-action .active-heart {
+  color: red ;
+  animation: heart-loading 2s alternate infinite ease-out;
+  -webkit-animation: heart-loading 1s alternate infinite ease-out forwards;
+}
+
+@keyframes  heart-loading{
+  from {
+    transform: rotate(360deg) scale(1.5);
+    -webkit-transform: rotate(360deg) scale(1.5);
+    -moz-transform: rotate(360deg) scale(1.5);
+    -ms-transform: rotate(360deg) scale(1.5);
+    -o-transform: rotate(360deg) scale(1.5);
+}to {
+  transform: rotate(-360deg) scale(2);
+  -webkit-transform: rotate(-360deg) scale(2);
+  -moz-transform: rotate(-360deg) scale(2);
+  -ms-transform: rotate(-360deg) scale(2);
+  -o-transform: rotate(-360deg) scale(2);
+}
+}
+
+@keyframes scale{
+  from {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    
+}
+  to {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+   
+  }
+}
+
+

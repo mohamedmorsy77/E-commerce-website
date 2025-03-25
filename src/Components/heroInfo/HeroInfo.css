@@ -1,0 +1,77 @@
+.hero-info {
+  margin-top: 76.79px;
+
+  .slider-container {
+    .info {
+      margin-top: 4rem;
+      a{
+        width: fit-content;
+      }
+    }
+    .image-1 {
+      background-image: url("../../assets//images/slider-image-1.webp");
+      background-size: cover;
+      background-position: center center;
+    }
+    .image-2 {
+      background-image: url("../../assets//images/slider-image-2.webp");
+      background-size: cover;
+      background-position: center center;
+    }
+    .image-3 {
+      background-image: url("../../assets//images/slider-image-3.webp");
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+  .shopNow {
+    div:nth-child(1) {
+      background-image: url("../../assets/images/ad-banner-1.webp");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    div:nth-child(2) {
+      background-image: url("../../assets/images/ad-banner-2.webp");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  }
+}
+.slick-dots {
+  bottom: 20px;
+}
+.slick-list {
+  height: 100%;
+  .slick-track {
+    height: 100%;
+  }
+}
+.slick-slide > div {
+  height: 100%;
+}
+.slick-dots li button:before {
+  opacity: 0.5;
+  color: rgb(56, 206, 56);
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: rgb(30, 110, 30);
+}
+
+.slick-arrow {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .slider-container {
+    .info {
+      margin-top: 2.5rem;
+      a{
+        width: fit-content;
+      }
+    }
+  }
+}

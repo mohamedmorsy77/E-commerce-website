@@ -1,0 +1,27 @@
+.product-details {
+  .product-images {
+    .base-image {
+      aspect-ratio: 1/0.8;
+      object-fit: contain;
+    }
+    .product-collection {
+      img {
+        object-fit: cover;
+        cursor: pointer;
+        aspect-ratio: 1/1;
+      }
+    }
+  }
+
+  .addCard {
+    .wishList:hover {
+      background-color: rgb(24, 196, 24);
+      color: white;
+    }
+  }
+}
+
+.transform-component-module_wrapper__SPB86 {
+  width: 100% !important;
+}
+

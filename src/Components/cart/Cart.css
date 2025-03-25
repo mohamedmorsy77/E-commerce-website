@@ -1,0 +1,58 @@
+.cart {
+  .cart-image {
+    width: 80px;
+    height: 80px;
+  }
+  .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    thead {
+      th {
+        background-color: #f8f9fa;
+      }
+    }
+    tbody {
+      tr {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+      }
+    }
+  }
+  .summary {
+    background-color: #f1f0f0;
+  }
+}
+
+.table tbody tr:hover {
+  transform: scale(1.02);
+}
+
+/* تخصيص شكل الـ scrollbar */
+.table-responsive::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; 
+}
+
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #69ca46; 
+  border-radius: 10px;
+}
+
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #45a029;
+}
+
+@media (max-width: 768px) {
+  table {
+    overflow-x: auto !important;
+  }
+}

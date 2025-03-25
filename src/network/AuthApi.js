@@ -1,34 +1,39 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
-export const authSignUp = createAsyncThunk("auth/sign-up", async (userData, {rejectWithValue}) => {
-  try {
-    const response = await axios.post(
-      "https://ecommerce.routemisr.com/api/v1/auth/signup",
-      userData
-    );
-    return response.data;
-  } catch (err) {
-    return rejectWithValue(err.response.data);
+export const authSignUp = createAsyncThunk(
+  "auth/sign-up",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "https://ecommerce.routemisr.com/api/v1/auth/signup",
+        userData
+      );
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
   }
-});
+);
 
-export const authLogin = createAsyncThunk("auth/login", async (userData, {rejectWithValue}) => {
-  try {
-    const response = await axios.post(
-      "https://ecommerce.routemisr.com/api/v1/auth/signin",
-      userData
-    );
-    return response.data;
-  } catch (err) {
-    return rejectWithValue(err.response.data);
+export const authLogin = createAsyncThunk(
+  "auth/login",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "https://ecommerce.routemisr.com/api/v1/auth/signin",
+        userData
+      );
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
   }
-});
+);
 
 export const authResetPassword = createAsyncThunk(
   "auth/resetPassword",
-  async (yourEmail, {rejectWithValue}) => {
+  async (yourEmail, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
@@ -45,7 +50,7 @@ export const authResetPassword = createAsyncThunk(
 
 export const authResetCode = createAsyncThunk(
   "auth/resetCode",
-  async (resetCode, {rejectWithValue}) => {
+  async (resetCode, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode",
@@ -54,24 +59,25 @@ export const authResetCode = createAsyncThunk(
       console.log(response.data);
       return response.data;
     } catch (err) {
-      return rejectWithValue(err.response.data) ;
+      return rejectWithValue(err.response.data);
     }
   }
 );
 
 export const createNewPassword = createAsyncThunk(
   "auth/createNewPassword",
-  async (newPassword, {rejectWithValue}) => {
+  async (newPassword, { rejectWithValue }) => {
     try {
       const response = await axios.put(
         "https://ecommerce.routemisr.com/api/v1/auth/resetPassword",
         newPassword
       );
-      console.log(response.data)
+      console.log(response.data);
       return response.data;
-
     } catch (err) {
-      return rejectWithValue(err.response.data)
+      return rejectWithValue(
+        err.response?.data?.message || "Something went wrong"
+      );
     }
   }
 );

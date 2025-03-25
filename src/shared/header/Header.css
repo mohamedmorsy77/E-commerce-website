@@ -12,4 +12,22 @@ header {
       font-size: 1.2rem;
     }
   }
+  .sign-out:hover, .settings:hover {
+    transform: translateX(10px);
+    -webkit-transform: translateX(10px);
+    -moz-transform: translateX(10px);
+    -ms-transform: translateX(10px);
+    -o-transform: translateX(10px);
+    color: rgb(88, 192, 88);
+    background-color: transparent;
+}
+}
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: -80px;
+  margin-top: var(--bs-dropdown-spacer);
+}
+.dropdown-toggle::after {
+  display: none;
+
 }

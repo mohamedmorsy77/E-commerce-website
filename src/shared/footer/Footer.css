@@ -1,4 +1,6 @@
 .footer {
+  bottom: 0;
+  top: 100px;
   background-color: #f0f3f2;
   .d-grid {
     display: grid;

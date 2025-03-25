@@ -1,13 +1,15 @@
 import { useFormik } from "formik";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createNewPassword } from "../../network/AuthApi";
 import { toast, ToastContainer } from "react-toastify";
 import { newPasswordSchema } from "../validationSchema/ValidationSchema";
 import { useNavigate } from "react-router-dom";
+import {PulseLoader} from "react-spinners"
 function NewPassword() {
   const dispatch = useDispatch();
-const navigate = useNavigate();
+  const { loading } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -15,29 +17,28 @@ const navigate = useNavigate();
     },
     validationSchema: newPasswordSchema,
     onSubmit: (values) => {
-      dispatch(createNewPassword(values)).unwrap().then((action) => {
-        console.log(action)
-        setTimeout(() => {
-            toast.success("Password changed successfully!")
-        }, 500)
-        formik.resetForm();
-        navigate("/login");
-        
-      }).catch((errPayload) => {
-        toast.error(errPayload.message);
-      })
+      dispatch(createNewPassword(values))
+        .unwrap()
+        .then((action) => {
+          console.log(action);
+          setTimeout(() => {
+            toast.success("Password changed successfully!");
+          }, 500);
+          formik.resetForm();
+          navigate("/login");
+        })
+        .catch((errPayload) => {
+          toast.error(errPayload.message);
+        });
     },
   });
-  console.log(formik.isValid);
-  console.log(formik.dirty);
+
   return (
     <section className="sign">
       <ToastContainer />
       <div className="container">
         <div>
-          <h1 className="fw-bold text-muted">
-            reset your account password
-          </h1>
+          <h1 className="fw-bold text-muted">reset your account password</h1>
         </div>
 
         <div className="row  mt-3">
@@ -93,11 +94,10 @@ const navigate = useNavigate();
                 </div>
               )}
               <button
-             
                 className="btn fw-bold  btn-success w-100 mt-5"
                 type="submit"
               >
-                Verfiy
+                Verfiy {loading && <PulseLoader color="#69ca46" size={10} />}
               </button>
             </form>
           </div>

@@ -6,9 +6,9 @@ import { forgetPassSchema } from "../validationSchema/ValidationSchema";
 import { useDispatch } from "react-redux";
 import { authResetPassword } from "../../network/AuthApi";
 import { toast, ToastContainer } from "react-toastify";
-import "./ResetPassword.css";
 import AuthSpinner from "../../Components/spinner/authSpinner/AuthSpinner";
 import InputField from "../reusable/InputField";
+import { PulseLoader } from "react-spinners";
 
 function ResetPassword() {
   const redirectedRef = useRef(false);
@@ -51,11 +51,8 @@ function ResetPassword() {
 
   return (
     <section className="sign">
-      {console.log("render")}
       <ToastContainer />
-      {isLoading ? (
-        <AuthSpinner />
-      ) : (
+    
         <div className="container">
           <div className="row m- px-4 align-items-center">
             <div className="col-12 col-lg-6  signup-img text-center text-lg-start">
@@ -85,12 +82,13 @@ function ResetPassword() {
                   className="btn btn-success fw-medium w-100 mt-4"
                 >
                   Verfiy
+                  {isLoading && <PulseLoader color="#69ca46" size={10} />}
                 </button>
               </form>
             </div>
           </div>
         </div>
-      )}
+  
     </section>
   );
 }

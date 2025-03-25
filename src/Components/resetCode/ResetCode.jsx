@@ -8,6 +8,7 @@ import { Navigate } from "react-router-dom";
 import AuthSpinner from "../../Components/spinner/authSpinner/AuthSpinner";
 import InputField from "../reusable/InputField";
 import { resetCodeSchema } from "../validationSchema/ValidationSchema";
+import { PulseLoader } from "react-spinners";
 function ResetCode() {
   const redirectedRef = useRef(false);
   const [isLoading, SetLoading] = useState(false);
@@ -44,9 +45,6 @@ function ResetCode() {
   return (
     <section className="sign">
       <ToastContainer />
-      {isLoading ? (
-        <AuthSpinner />
-      ) : (
         <div className="container">
           <div>
             <h1 className="fw-bold text-muted">Enter Your Reset Code</h1>
@@ -67,13 +65,13 @@ function ResetCode() {
                   className="btn fw-bold  btn-success w-100 mt-4"
                   type="submit"
                 >
-                  Verfiy
+                  Verfiy {isLoading && <PulseLoader color="#69ca46" size={10} />}
                 </button>
               </form>
             </div>
           </div>
         </div>
-      )}
+ 
     </section>
   );
 }

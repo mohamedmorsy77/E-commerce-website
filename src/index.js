@@ -1,18 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import '../node_modules/slick-carousel/slick/slick.css';
+import '../node_modules/slick-carousel/slick/slick-theme.css';
+import "../node_modules/remixicon/fonts/remixicon.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-import "../node_modules/remixicon/fonts/remixicon.css";
 import "./App.css";
 import "./index.css";
 import { Provider } from "react-redux";
-import store from "./store/Store";
+import {store , persistedStore} from "./store/Store";
 import App from "./App";
+import { PersistGate } from "redux-persist/integration/react";
+import Loading from "./Components/spinner/loading/Loading.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={<Loading />} persistor={persistedStore}>
+      <App/>
+    </PersistGate>
   </Provider>
 );
 

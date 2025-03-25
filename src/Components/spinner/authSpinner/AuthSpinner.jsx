@@ -1,5 +1,5 @@
 import React from "react";
-import './AuthSpinner.css'
+import '../Spinner.css'
 function AuthSpinner() {
   return (
     <div className="loading-container d-flex align-items-center justify-content-center">
