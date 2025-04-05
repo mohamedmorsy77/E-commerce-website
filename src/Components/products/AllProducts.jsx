@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productsSelectors } from "../../reducers/ProductsSlice";
 import ProductsCard from "./ProductsCard";
-import AuthSpinner from "../spinner/authSpinner/AuthSpinner";
 import { ToastContainer } from "react-toastify";
 import SkeletonCard from "../skeletonCard/SkeletonCard";
 
@@ -15,9 +14,9 @@ function AllProducts() {
   );
   const [searchQuery, setSearchQuery] = useState(storedSearchQuery || "");
 
-  const page = useSelector((state) => state.products.currentPage);
+
   const products = useSelector(productsSelectors.selectAll);
-  console.log("products");
+
   const { loading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {

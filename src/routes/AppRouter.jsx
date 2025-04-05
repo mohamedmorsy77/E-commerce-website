@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Layout from "../layout/Layout";
 import SignUp from "../Components/signup/SignUp";
 import Login from "../Components/login/Login";
@@ -28,7 +28,7 @@ const AllProducts = React.lazy(() =>
 
 function AppRouter() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -130,7 +130,7 @@ function AppRouter() {
           />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

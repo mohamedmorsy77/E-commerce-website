@@ -2,7 +2,7 @@
   "name": "e-commerce-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mohamedmorsy77.github.com.io/E-commerce-website",
+  "homepage": "https://mohamedmorsy77.github.io/E-commerce-website",
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
     "@stripe/stripe-js": "^7.0.0",
@@ -38,7 +38,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build -f"
   },
   "eslintConfig": {
     "extends": [

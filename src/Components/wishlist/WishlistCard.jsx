@@ -1,11 +1,10 @@
-import React, { useEffect, useMemo } from "react";
+import React, {  useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProductFromWishlist } from "../../network/Wishlist";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import { addProductsToCart } from "../../network/CartApi";
-import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min";
 function WishlistCard({ product }) {
   const { wishlistLoadingIds } = useSelector((state) => state.wishlist);
   const { addProductToCartloadingIds } = useSelector((state) => state.cart);
