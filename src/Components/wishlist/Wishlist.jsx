@@ -9,13 +9,15 @@ function Wishlist() {
   const allProducts = useSelector(productsSelectors.selectAll);
   const wishListIds = useSelector(wishListSelectors.selectAll);
 
+  const wishlistSet = useMemo(() => new Set(wishListIds), [wishListIds]);
+
   //Get the products that are in the wishlist.
   const productsInWishlist = useMemo(
     () =>
       allProducts.filter((product) => {
-        return wishListIds.find((id) => product._id === id);
+        return wishlistSet.has(product?._id);
       }),
-    [wishListIds, allProducts]
+    [wishlistSet, allProducts]
   );
 
   return (
@@ -33,14 +35,14 @@ function Wishlist() {
           <div className="col-12 table-responsive">
             {productsInWishlist.length >= 1 ? (
               <table className="table transition">
-                <thead className="row ">
-                  <th className="p-3  text-success col-5  col-lg-7">
+                <thead className="">
+                  <th className="p-3  text-success ">
                     Product Info
                   </th>
-                  <th className="p-3 text-center text-success  col-2">
+                  <th className="p-3 text-center text-success  ">
                     Unit price
                   </th>
-                  <th className="p-3  text-success col-5  col-lg-3">
+                  <th className="p-3  text-success">
                     stock status
                   </th>
                 </thead>

@@ -1,4 +1,5 @@
 import React from "react";
+import './Categories.css'
 import { useParams } from "react-router-dom";
 import { categoriesSelectors } from "../../reducers/CategoriesSlice";
 import { useSelector } from "react-redux";

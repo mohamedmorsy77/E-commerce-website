@@ -47,12 +47,12 @@ function WishlistCard({ product }) {
     handleAction(addProductsToCart , "Added to cart successfully!");
 
   return (
-    <tr className="transition ">
-      <td className="d-inline-flex align-items-center gap-3 py-2">
+    <tr className="transition">
+      <td className="d-inline-flex align-items-center gap-3 py-2 overflow-hidden">
         <img src={product.imageCover} alt="flflf" />
         <div className="product-info overflow-hidden ">
           <h4 className="text-success">{product.category.name}</h4>
-          <p className="m-0 mt-2 text-truncate">{product.title}</p>
+          <p className="m-0 mt-2 text-truncate" title={product.title}>{product.title}</p>
         </div>
       </td>
       <td className="text-center">

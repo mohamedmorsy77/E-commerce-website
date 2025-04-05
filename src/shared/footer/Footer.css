@@ -1,4 +1,11 @@
 .footer {
+  ul {
+    li {
+      a {
+        color: #5c6c75;
+      }
+    }
+  }
   bottom: 0;
   top: 100px;
   background-color: #f0f3f2;
@@ -6,8 +13,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-   .info {
-    a:hover {
+    .info {
+      a:hover {
         color: #0aad0a !important;
         font-weight: 700;
         transform: scale(1.01);
@@ -15,8 +22,8 @@
         -moz-transform: scale(1.01);
         -ms-transform: scale(1.01);
         -o-transform: scale(1.01);
-}
-   }
+      }
+    }
   }
 
   .social {

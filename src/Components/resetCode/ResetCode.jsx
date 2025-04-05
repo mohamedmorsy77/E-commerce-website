@@ -4,9 +4,7 @@ import { useDispatch } from "react-redux";
 import { authResetCode } from "../../network/AuthApi";
 import { toast, ToastContainer } from "react-toastify";
 import { Navigate } from "react-router-dom";
-
-import AuthSpinner from "../../Components/spinner/authSpinner/AuthSpinner";
-import InputField from "../reusable/InputField";
+import InputField from "../reusableInputs/InputField";
 import { resetCodeSchema } from "../validationSchema/ValidationSchema";
 import { PulseLoader } from "react-spinners";
 function ResetCode() {

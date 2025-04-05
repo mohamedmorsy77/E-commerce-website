@@ -2,12 +2,11 @@ import React from "react";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import signUp from "../../assets/images/signup-g.svg";
-import "./SignUp.css";
 import { registerSchema } from "../validationSchema/ValidationSchema";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authSignUp } from "../../network/AuthApi";
-import InputField from "../reusable/InputField";
+import InputField from "../reusableInputs/InputField";
 function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,7 +36,7 @@ function SignUp() {
     },
   });
   return (
-    <section className="sign">
+    <section className="sign mt-all py-5">
       <ToastContainer />
       <div className="container">
         <div className="row m- px-4 align-items-center">

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Products.css";
 
@@ -8,17 +8,23 @@ import { fetchProducts } from "../../network/ProductApi";
 import { productsSelectors } from "../../reducers/ProductsSlice";
 import ProductsCard from "./ProductsCard";
 import { ToastContainer } from "react-toastify";
+import SkeletonCard from "../skeletonCard/SkeletonCard";
 function Products() {
   const products = useSelector(productsSelectors.selectAll);
   const { loading } = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    if (products.length === 0) {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, products]);
 
-  const popularProducts =
-    products && products.filter((product) => product.ratingsQuantity > 18);
+  const popularProducts = useMemo(() => {
+    return (
+      products && products.filter((product) => product.ratingsQuantity > 30)
+    );
+  }, [products]);
 
   return (
     <section className="products py-5">
@@ -31,19 +37,20 @@ function Products() {
             </h3>
           </div>
         </div>
-        {loading ? (
-          <Loading />
-        ) : (
-          <div className="row m-0">
-            {popularProducts.map((product) => (
-              <ProductsCard
-                key={product["_id"]}
-                product={product}
-                slider={false}
-              />
-            ))}
-          </div>
-        )}
+
+        <div className="row m-0">
+          {loading
+            ? Array.from({ length: popularProducts.length }).map((_, i) => (
+                <SkeletonCard key={i + 1} />
+              ))
+            : popularProducts.map((product) => (
+                <ProductsCard
+                  key={product["_id"]}
+                  product={product}
+                  slider={false}
+                />
+              ))}
+        </div>
       </div>
     </section>
   );

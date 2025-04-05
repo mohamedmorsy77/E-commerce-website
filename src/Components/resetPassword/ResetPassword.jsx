@@ -6,8 +6,7 @@ import { forgetPassSchema } from "../validationSchema/ValidationSchema";
 import { useDispatch } from "react-redux";
 import { authResetPassword } from "../../network/AuthApi";
 import { toast, ToastContainer } from "react-toastify";
-import AuthSpinner from "../../Components/spinner/authSpinner/AuthSpinner";
-import InputField from "../reusable/InputField";
+import InputField from "../reusableInputs/InputField";
 import { PulseLoader } from "react-spinners";
 
 function ResetPassword() {

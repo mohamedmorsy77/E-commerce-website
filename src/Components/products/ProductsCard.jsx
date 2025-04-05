@@ -1,5 +1,5 @@
-import React, { act, useMemo } from "react";
-
+import React, { useMemo } from "react";
+import './Products.css'
 import { useNavigate } from "react-router-dom";
 import ReviewProduct from "../review/ReviewProduct";
 import { addProductsToCart } from "../../network/CartApi";
@@ -11,25 +11,25 @@ function ProductsCard({ product, slider }) {
   const { addProductToCartloadingIds } = useSelector((state) => state.cart);
   const { wishlistLoadingIds } = useSelector((state) => state.wishlist);
   const wishlistLoading = useMemo(
-    () => wishlistLoadingIds.includes(product._id),
-    [product._id, wishlistLoadingIds]
+    () => wishlistLoadingIds.includes(product?._id),
+    [product?._id, wishlistLoadingIds]
   );
   const isLoading = useMemo(
-    () => addProductToCartloadingIds.includes(product._id),
-    [product._id, addProductToCartloadingIds]
+    () => addProductToCartloadingIds.includes(product?._id),
+    [product?._id, addProductToCartloadingIds]
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const fullStar = Math.floor(product.ratingsAverage);
-  const halfStar = product.ratingsAverage % 1 >= 0.5;
+  const fullStar = Math.floor(product?.ratingsAverage);
+  const halfStar = product?.ratingsAverage % 1 >= 0.5;
   const emptystar = 5 - fullStar - halfStar;
-  const discount = product.priceAfterDiscount
+  const discount = product?.priceAfterDiscount
     ? Math.floor(
         ((product.priceAfterDiscount - product.price) / product.price) * 100
       )
     : null;
 
-   const handleAction = async (actionMethod, messageSuccess) => {
+  const handleAction = async (actionMethod, messageSuccess) => {
     try {
       const action = await dispatch(actionMethod(product._id)).unwrap();
       toast.success(action.message || messageSuccess, {
@@ -38,9 +38,12 @@ function ProductsCard({ product, slider }) {
     } catch (err) {
       navigate("/login");
       setTimeout(() => {
-        toast.error(err || "You are not logged in. Please login to get access", {
-          position: "top-center",
-        });
+        toast.error(
+          err || "You are not logged in. Please login to get access",
+          {
+            position: "top-center",
+          }
+        );
       }, 500);
     }
   };
@@ -64,7 +67,7 @@ function ProductsCard({ product, slider }) {
         ) : null}
         <div className="product-action transition d-flex position-absolute flex-column gap-2">
           <button title="Quick View" className="btn transition shadow-sm">
-            <i class="ri-eye-line"></i>
+            <i className="ri-eye-line"></i>
           </button>
           <button
             onClick={handleWishList}
@@ -90,12 +93,12 @@ function ProductsCard({ product, slider }) {
           />
         </div>
         <div className="card-body p-3">
-          <h4 className="text-success">{product.category.name}</h4>
+          <h4 className="text-success">{product?.category?.name}</h4>
           <span
-            title={product.title}
+            title={product?.title}
             className="fw-medium product-title text-black text-truncate d-block  "
           >
-            {product.title}
+            {product?.title}
           </span>
           <ReviewProduct
             product={product}
@@ -104,7 +107,7 @@ function ProductsCard({ product, slider }) {
             emptystar={emptystar}
           />
           <div className="price mt-4 d-flex justify-content-between align-items-center">
-            {product.priceAfterDiscount ? (
+            {product?.priceAfterDiscount ? (
               <div className="d-flex align-items-center">
                 <p className="text-danger fw-bold  m-0">
                   ${product.priceAfterDiscount}
@@ -114,14 +117,16 @@ function ProductsCard({ product, slider }) {
                 </p>
               </div>
             ) : (
-              <span className="text-danger fw-bold me-1">${product.price}</span>
+              <span className="text-danger fw-bold me-1">
+                ${product?.price}
+              </span>
             )}
             <span
               className={`stock fw-medium ${
-                product.quantity > 0 ? "text-success" : "text-danger"
+                product?.quantity > 0 ? "text-success" : "text-danger"
               }`}
             >
-              {product.quantity > 0 ? "IN STOCK" : "Out Of Stock"}
+              {product?.quantity > 0 ? "IN STOCK" : "Out Of Stock"}
             </span>
           </div>
           <button
@@ -136,4 +141,4 @@ function ProductsCard({ product, slider }) {
   );
 }
 
-export default ProductsCard;
+export default React.memo(ProductsCard);

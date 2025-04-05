@@ -5,6 +5,7 @@ export const fetchProducts = createAsyncThunk(
   "products/fetch-products",
   async (page = 1, { rejectWithValue }) => {
     if (cashProduct[page]) {
+      console.log(cashProduct);
       return cashProduct[page];
     }
 
@@ -13,7 +14,7 @@ export const fetchProducts = createAsyncThunk(
         `https://ecommerce.routemisr.com/api/v1/products?page=${page}`
       );
       cashProduct[page] = response.data;
-      // localStorage.setItem("cashProduct", JSON.stringify(cashProduct));
+      console.log(response.data);
       return response.data;
     } catch (err) {
       const errorMessage =

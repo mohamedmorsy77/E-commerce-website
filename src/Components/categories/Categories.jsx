@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Categories.css";
 import { fetchCategories } from "../../network/CategoriesApi";
 import { categoriesSelectors } from "../../reducers/CategoriesSlice";
-import Loading from "../spinner/loading/Loading";
 import CategoriesCard from "./CategoriesCard";
+import SkeletonCard from "../skeletonCard/SkeletonCard";
+import "./Categories.css";
 function Categories() {
+  console.log("categories")
   const categories = useSelector(categoriesSelectors.selectAll);
   const { loading } = useSelector((state) => state.categories);
-
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
+    if (categories.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories]);
 
   return (
     <section className="categories py-5">
@@ -24,15 +26,16 @@ function Categories() {
             </h3>
           </div>
         </div>
-        {loading ? (
-          <Loading />
-        ) : (
-          <div className="row m-0">
-            {categories.map((category) => (
-              <CategoriesCard key={category["_id"]} category={category} />
-            ))}
-          </div>
-        )}
+
+        <div className="row m-0">
+          {loading
+            ? Array.from({ length: categories.length }).map((_, i) => (
+                <SkeletonCard key={i + 1} />
+              ))
+            : categories.map((category) => (
+                <CategoriesCard key={category["_id"]} category={category} />
+              ))}
+        </div>
       </div>
     </section>
   );

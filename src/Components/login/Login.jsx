@@ -6,13 +6,13 @@ import login from "../../assets/images/signin-g.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authLogin } from "../../network/AuthApi";
-import InputField from "../reusable/InputField";
+import InputField from "../reusableInputs/InputField";
 import { PulseLoader } from "react-spinners";
 function Login() {
   const redirectedRef = useRef(false);
   const [isLoading, SetLoading] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -32,9 +32,6 @@ function Login() {
             navigate("/");
             toast.success("Login successful!");
           }, 500);
-         
-        
-         
         } else {
           SetLoading(false);
           toast.error(data.payload.message);
@@ -44,7 +41,7 @@ function Login() {
   });
 
   return (
-    <section className="sign">
+    <section className="mt-all py-5">
       <ToastContainer />
       <div className="container">
         <div className="row m- px-4 align-items-center">

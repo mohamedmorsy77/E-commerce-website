@@ -8,7 +8,9 @@ import { deleteAllProduct } from "../../network/CartApi";
 import Swal from "sweetalert2";
 
 import "./Cart.css";
+import { useNavigate } from "react-router-dom";
 function Cart() {
+  const navigate = useNavigate();
   const numOfCartItems = useSelector(
     (state) => state.cart.cartInfo?.numOfCartItems || 0
   );
@@ -23,7 +25,7 @@ function Cart() {
 
   const mergeProduct = cartItems.map((item) => {
     const productInfo = products.find(
-      (product) => product._id === item.product
+      (product) => product?._id === item.product
     );
 
     return {
@@ -130,7 +132,7 @@ function Cart() {
           <div className="col-12 col-lg-4 mt-4">
             <div className="summary p-3 rounded-2  shadow">
               <h4>Total Price: ${totalCartPrice}</h4>
-              <button className="btn btn-dark mt-3 w-100 fw-bold">
+              <button disabled={numOfCartItems === 0} className="btn btn-dark mt-3 w-100 fw-bold" onClick={() => navigate("/checkout")}>
                 Continue to checkout
               </button>
             </div>

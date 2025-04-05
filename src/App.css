@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 .active {
   background-color: #21313c;
 }
@@ -8,9 +10,11 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Montserrat", sans-serif;
+}
 input,
 button {
   outline: 0;
@@ -37,7 +41,7 @@ button {
 }
 
 .mt-all {
-  margin-top: 76.79px;
+  margin-top: 92px;
 }
 
 td {
@@ -48,8 +52,52 @@ td {
   --bs-tooltip-color: white;
   font-weight: bold;
 }
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(10, 173, 10, 0.3);
+}
+input::placeholder {
+  color: rgb(29, 128, 29) !important;
+}
+input[type="radio"],
+input[type="radio"]:checked::before {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+input[type="radio"] {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(25, 135, 84, 1);
+  cursor: pointer;
+  /* outline: none; */
+  position: relative;
+}
+input[type="radio"]:checked {
+  background-color: rgba(25, 135, 84, 1);
+}
 
-
+input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+/* .table-responsive {
+  max-width: 100%;
+} */
 @media (min-width: 992px) {
   .table-responsive {
     overflow: hidden;

@@ -13,8 +13,10 @@ import SpecificCategory from "../Components/categories/SpecificCategory";
 import BrandsDetails from "../Components/brands/BrandsDetails";
 import ProtectedRoutes from "./ProtectedRoutes";
 
-import Cart from "../Components/cart/Cart";
-import Wishlist from "../Components/wishlist/Wishlist";
+import Checkout from "../Components/checkout/Checkout";
+const Wishlist = React.lazy(() => import("../Components/wishlist/Wishlist"));
+const Cart = React.lazy(() => import("../Components/cart/Cart"));
+const Orders = React.lazy(() => import("../Components/allOrders/Orders"));
 const Home = React.lazy(() => import("../Components/home/Home"));
 const OurCategories = React.lazy(() =>
   import("../Components/categories/OurCategories")
@@ -48,11 +50,9 @@ function AppRouter() {
           <Route
             path="/ourProducts"
             element={
-              <Suspense fallback={<AuthSpinner />}>
-                <ProtectedRoutes>
-                  <AllProducts />
-                </ProtectedRoutes>
-              </Suspense>
+              <ProtectedRoutes>
+                <AllProducts />
+              </ProtectedRoutes>
             }
           />
           <Route
@@ -99,13 +99,33 @@ function AppRouter() {
               </ProtectedRoutes>
             }
           />
-          <Route path="cart" element={<Cart />} />
+          <Route
+            path="cart"
+            element={
+              <Suspense fallback={<AuthSpinner />}>
+                <ProtectedRoutes>
+                  <Cart />
+                </ProtectedRoutes>
+              </Suspense>
+            }
+          />
           <Route
             path="wishlist"
             element={
-              <ProtectedRoutes>
-                <Wishlist />
-              </ProtectedRoutes>
+              <Suspense fallback={<AuthSpinner />}>
+                <ProtectedRoutes>
+                  <Wishlist />
+                </ProtectedRoutes>
+              </Suspense>
+            }
+          />
+          <Route path="checkout" element={<Checkout />} />
+          <Route
+            path="allorders"
+            element={
+              <Suspense fallback={<AuthSpinner />}>
+                <Orders />
+              </Suspense>
             }
           />
         </Route>

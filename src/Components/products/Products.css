@@ -2,16 +2,8 @@
   .product-item {
     overflow: hidden;
     cursor: pointer;
-    /* .add-to-cart {
-      transform: translateY(56px);
-      -webkit-transform: translateY(56px);
-      -moz-transform: translateY(56px);
-      -ms-transform: translateY(56px);
-      -o-transform: translateY(56px);
-    } */
     .product-action {
       top: 19px;
-      /* right: -60px; */
       right: 15px;
       button {
         background-color: #fff;

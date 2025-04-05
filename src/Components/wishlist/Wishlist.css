@@ -30,7 +30,9 @@
     }
   }
   .product-info {
-    text-overflow: ellipsis;
+    p {
+      max-width: 400px;
+    }
   }
 }
 

@@ -78,7 +78,7 @@ function Header() {
             {authData.token ? (
               <ul className="d-flex list-unstyled aligns-item-center gap-3 m-0 p-0">
                 <li>
-                  <Link className="nav-link text-decoration-none position-relative">
+                  <Link to="all-orders" className="nav-link text-decoration-none position-relative">
                     <i className="ri-truck-fill text-success fs-1"></i>
                     <span className="badge bg-danger  text-white  top-0 end-0 position-absolute">
                       0
@@ -132,7 +132,7 @@ function Header() {
                         to="/login"
                         onClick={() => handleLogout()}
                       >
-                        Sign Out <i class="ri-arrow-right-line"></i>
+                        Sign Out <i className="ri-arrow-right-line"></i>
                       </Link>
                     </li>
                     <li>
@@ -140,7 +140,7 @@ function Header() {
                         className="dropdown-item transition settings"
                         href="#"
                       >
-                        Settings <i class="ri-equalizer-line"></i>
+                        Settings <i className="ri-equalizer-line"></i>
                       </Link>
                     </li>
                   </ul>

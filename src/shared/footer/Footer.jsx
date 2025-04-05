@@ -19,7 +19,7 @@ function Footer() {
               <h6 className="heading-color fw-bold">{title}</h6>
               <ul className="list-unstyled mt-4 info">
                 {text.map(({ list }, index) => (
-                  <li className="mt-3"  key={index + 1}><Link className="transition text-secondary text-decoration-none">{list}</Link></li>
+                  <li className="mt-3"  key={index + 1}><Link className="transition  text-decoration-none">{list}</Link></li>
                 ))}
               </ul>
             </div>

@@ -40,12 +40,12 @@ export const loginSchema = Yup.object({
 });
 
 export const forgetPassSchema = Yup.object({
-  email: Yup.string().email("please enter a valid email").required("enter your email address"),
+  email: Yup.string()
+    .email("please enter a valid email")
+    .required("enter your email address"),
 });
 
-
 export const newPasswordSchema = Yup.object({
-
   email: Yup.string()
     .email("please enter a valid email")
     .required("email is required"),
@@ -59,11 +59,20 @@ export const newPasswordSchema = Yup.object({
       /^(?=.*[!@#\$%\^&\*])/,
       getCharactersValidationErrors("special character")
     ),
-
 });
 
-
-
 export const resetCodeSchema = Yup.object({
-  resetCode : Yup.string().required("Reset code is required"),
-})
+  resetCode: Yup.string().required("Reset code is required"),
+});
+
+export const checkoutSchema = Yup.object({
+  details: Yup.string()
+    .required("You must enter your address details")
+    .min(5, "You must enter at least 5 characters"),
+  phone: Yup.string()
+    .required("Your phone is required")
+    .matches(/^[0-9]+$/, "That doesn't look like a phone number")
+    .min(8, "Phone number must be at least 8 characters"),
+
+  city: Yup.string().required("your city is required"),
+});

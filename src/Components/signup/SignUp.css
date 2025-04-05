@@ -1,8 +1,0 @@
-.sign {
-    margin-top: 76.79px;
-    padding: 5rem 0;
-    .form-control:focus {
-        /* border-color: rgba(10, 173, 10, 1); */
-        box-shadow: 0 0 0 0.25rem rgba(10, 173, 10,0.3);
-    }
-}

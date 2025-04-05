@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../network/ProductApi";
 import { productsSelectors } from "../../reducers/ProductsSlice";
@@ -19,7 +19,7 @@ function BestSellerProducts() {
     cssEase: "linear",
     responsive: [
       {
-        breakpoint: 1200, 
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
         },
@@ -43,11 +43,14 @@ function BestSellerProducts() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    if (products.length === 0) {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, products]);
 
-  const bestSellerProducts =
-    products && products.filter((product) => product.sold > 8000);
+  const bestSellerProducts = useMemo(() => {
+    return products && products.filter((product) => product?.sold > 8000);
+  }, [products]);
 
   return (
     <section className="products best-seller-products py-5">

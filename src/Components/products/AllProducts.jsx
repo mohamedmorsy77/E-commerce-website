@@ -4,19 +4,27 @@ import { fetchProducts, productsSelectors } from "../../reducers/ProductsSlice";
 import ProductsCard from "./ProductsCard";
 import AuthSpinner from "../spinner/authSpinner/AuthSpinner";
 import { ToastContainer } from "react-toastify";
+import SkeletonCard from "../skeletonCard/SkeletonCard";
 
 function AllProducts() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
+  const storedPage = localStorage.getItem("currentPage");
+  const storedSearchQuery = localStorage.getItem("searchQuery");
+
+  const [currentPage, setCurrentPage] = useState(
+    storedPage ? parseInt(storedPage) : 1
+  );
+  const [searchQuery, setSearchQuery] = useState(storedSearchQuery || "");
+
   const page = useSelector((state) => state.products.currentPage);
   const products = useSelector(productsSelectors.selectAll);
-  console.log(products)
+  console.log("products");
   const { loading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {
     localStorage.setItem("currentPage", currentPage);
+    localStorage.setItem("searchQuery", searchQuery);
     dispatch(fetchProducts(currentPage));
-  }, [currentPage, dispatch]);
+  }, [currentPage, dispatch, searchQuery]);
 
   const handleChangePage = (newPage) => {
     if (newPage > 0) {
@@ -54,6 +62,7 @@ function AllProducts() {
                 id="exampleFormControlInput1"
                 placeholder="Search by category..."
                 onChange={(e) => setSearchQuery(e.target.value)}
+                value={searchQuery}
               />
             </div>
           </div>
@@ -103,11 +112,15 @@ function AllProducts() {
             </nav>
           </div>
         </div>
-        {loading && <AuthSpinner />}
+
         <div className="row mt-3">
-          {productsAfterSearch.length > 0 ? (
+          {loading ? (
+            Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonCard key={i + 1} />
+            ))
+          ) : productsAfterSearch.length > 0 ? (
             productsAfterSearch.map((product) => (
-              <ProductsCard key={product["_id"]} product={product} />
+              <ProductsCard key={product?._id} product={product} />
             ))
           ) : (
             <h3 className="text-center p-3">No products found.</h3>

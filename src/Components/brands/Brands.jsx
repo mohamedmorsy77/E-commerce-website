@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBrands } from "../../network/BrandsApi";
 import { brandsSelectors } from "../../reducers/BrandsSlice";
 import "./Brands.css";
-import Loading from "../spinner/loading/Loading";
+import SkeletonCard from "../skeletonCard/SkeletonCard";
 import { useNavigate } from "react-router-dom";
 import BrandCard from "./BrandCard";
 function Brands() {
@@ -21,15 +21,18 @@ function Brands() {
         <div className="row">
           <h1 className="text-success">All Brands</h1>
         </div>
-        {loading ? (
-          <Loading />
-        ) : (
-          <div className="row mt-5">
-            {brands.map((brand) => (
-              <BrandCard key={brand._id} brand={brand}  onClick={() => navigate(`/specificBrand/${brand["_id"]}`)}/>
-            ))}
-          </div>
-        )}
+
+        <div className="row mt-5">
+          {loading
+            ? Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
+            : brands.map((brand) => (
+                <BrandCard
+                  key={brand._id}
+                  brand={brand}
+                  onClick={() => navigate(`/specificBrand/${brand["_id"]}`)}
+                />
+              ))}
+        </div>
       </div>
     </section>
   );

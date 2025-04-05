@@ -19,16 +19,17 @@ import productSlice from "../reducers/ProductsSlice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import brandsSlice from "../reducers/BrandsSlice";
-import cartSlice  from "../reducers/CartSlice";
+import cartSlice from "../reducers/CartSlice";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
-import wishlistSlice  from "../reducers/WishlistSlice";
+import wishlistSlice from "../reducers/WishlistSlice";
+import orderSlice from "../reducers/OrderSlice";
 
 const persistConfig = {
   key: "root",
   storage,
   stateReconciler: autoMergeLevel2,
-  whitelist: ["categories", "products", "brands","cart","wishlist"],
-  blacklist: ["searchQuery"],
+  whitelist: ["categories", "products", "brands", "cart", "wishlist", "orders"],
+  blacklist: ["searchQuery", "orderId", "sessionUrl"],
 };
 
 const rootReducer = combineReducers({
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
   products: productSlice,
   brands: brandsSlice,
   cart: cartSlice,
-  wishlist: wishlistSlice
+  wishlist: wishlistSlice,
+  orders: orderSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

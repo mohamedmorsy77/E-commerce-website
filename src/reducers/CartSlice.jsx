@@ -5,6 +5,7 @@ import {
   deleteProduct,
   updateProduct,
 } from "../network/CartApi";
+import { createCashOrder, createOnlineCashOrder } from "../network/OrderApi";
 
 export const cartAdapter = createEntityAdapter({
   selectId: (product) => product.product,
@@ -16,6 +17,12 @@ function sumAllProductCount(newProduct) {
   return newProductCount;
 }
 
+function deleteAllInCart(state, cartAdapter) {
+  state.allProductCount = 0;
+  cartAdapter.removeAll(state);
+  state.cartInfo.numOfCartItems = 0;
+  state.cartInfo.data.totalCartPrice = 0;
+}
 export function removeLoadingIds(loadingIds, actionId) {
   return loadingIds.filter((id) => id !== actionId);
 }
@@ -30,6 +37,8 @@ export const cartSlice = createSlice({
     updateCartLoadingIds: [],
     deleteCartLoadingIds: [],
     loading: false,
+    orderId: "",
+    sessionUrl: "",
   }),
   reducers: {
     updateProductCount: (state, action) => {
@@ -53,12 +62,13 @@ export const cartSlice = createSlice({
           state.addProductToCartloadingIds,
           action.meta.arg
         );
-
+        state.orderId = action.payload.cartId;
         const newProduct = action.payload?.data?.products || [];
 
         state.loading = false;
         state.error = null;
         cartAdapter.setAll(state, newProduct);
+        console.log(action.payload);
         state.cartInfo = action.payload || {};
 
         const newProductCount = sumAllProductCount(newProduct);
@@ -85,15 +95,14 @@ export const cartSlice = createSlice({
           action.meta.arg.productId
         );
         const newProduct = action.payload.data.products;
-      
-      
+
         const updateProductAccordingToCount = newProduct.map((product) => ({
           id: product._id,
           changes: { count: product.count },
         }));
 
         cartAdapter.updateMany(state, updateProductAccordingToCount);
-       
+
         state.cartInfo = action.payload;
         const newProductCount = sumAllProductCount(newProduct);
         state.allProductCount = newProductCount;
@@ -137,21 +146,41 @@ export const cartSlice = createSlice({
       })
       // Delete All Product
       .addCase(deleteAllProduct.pending, (state, action) => {
-        console.log(action);
         state.loading = true;
         state.error = null;
       })
       .addCase(deleteAllProduct.fulfilled, (state, action) => {
-        state.allProductCount = 0;
-        cartAdapter.removeAll(state);
-        state.cartInfo.numOfCartItems = 0;
-        state.cartInfo.data.totalCartPrice = 0;
-
+        deleteAllInCart(state, cartAdapter);
         state.loading = false;
       })
       .addCase(deleteAllProduct.rejected, (state, action) => {
         state.error = action.payload;
         state.loading = false;
+      })
+      //Create Orders
+      .addCase(createCashOrder.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(createCashOrder.fulfilled, (state, action) => {
+        deleteAllInCart(state, cartAdapter);
+        state.loading = false;
+      })
+
+      .addCase(createCashOrder.rejected, (state, action) => {
+        state.loading = false;
+      }) // Online Payment
+      .addCase(createOnlineCashOrder.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createOnlineCashOrder.fulfilled, (state, action) => {
+        state.loading = false;
+        state.sessionUrl = action.payload.session.url;
+        deleteAllInCart(state, cartAdapter);
+      })
+      .addCase(createOnlineCashOrder.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
@@ -160,5 +189,12 @@ export const cartSlice = createSlice({
 
 export const cartSelectors = cartAdapter.getSelectors((state) => state.cart);
 export const { updateProductCount } = cartSlice.actions;
-export { addProductsToCart, updateProduct, deleteProduct, deleteAllProduct };
+export {
+  addProductsToCart,
+  updateProduct,
+  deleteProduct,
+  deleteAllProduct,
+  createCashOrder,
+  createOnlineCashOrder,
+};
 export default cartSlice.reducer;
