@@ -5,7 +5,7 @@ import { deleteProduct, updateProduct } from "../../network/CartApi";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Swal from "sweetalert2";
+
 function CartItem({
   product,
   handleDecrease,
@@ -65,7 +65,7 @@ function CartItem({
           alt="product-image"
         />
         <div className="cart-info">
-          <p className="m-0 text-success">{product.title}</p>
+          <p className="m-0 text-success ">{product.category.name}</p>
           <span className="m-0 d-flex align-items-center gap-2">
             {product.ratingsAverage}
             <Star

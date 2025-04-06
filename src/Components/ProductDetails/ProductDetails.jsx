@@ -71,11 +71,11 @@ function ProductDetails() {
     }
   };
   return (
-    <section className="product-details mt-all py-5 px-5">
+    <section className="product-details mt-all py-5">
       <ToastContainer />
       <div className="container  w-100 d-flex align-items-center justify-content-center">
         <div className="row w-100  align-items-start ">
-          <div className="col-12 py-4 align-self-center flex-lg-row flex-column order-1 order-lg-0  col-lg-6 product-images">
+          <div className="col-12 py-4 align-self-center flex-lg-row flex-column   col-lg-6 product-images">
             <div className="shadow rounded-3">
               <TransformWrapper>
                 <TransformComponent className="w-100">
@@ -88,10 +88,10 @@ function ProductDetails() {
               </TransformWrapper>
             </div>
             <div className="product-collection d-flex mt-3">
-              {productInfo.images.slice(0, 4).map((image, i) => (
+              {productInfo.length > 1 && productInfo.images.slice(0, 4).map((image, i) => (
                 <div
                   key={i + 1}
-                  className="mt-2 border"
+                  className="mt-2 border  border-success"
                   onClick={changeProductImage}
                 >
                   <img className="img-fluid" src={image} alt="product-image" />
@@ -99,9 +99,9 @@ function ProductDetails() {
               ))}
             </div>
           </div>
-          <div className="col-12 p-md-3 p-xl-5  flex-lg-row  flex-column order-0 order-lg-1   col-lg-6 product-description">
+          <div className="col-12 p-md-3 p-xl-5  flex-lg-row  flex-column    col-lg-6 product-description">
             <h5 className="text-success fs-6">{productInfo.title}</h5>
-            <p className="mt-4 text-muted">{productInfo.description}</p>
+            <p  className="mt-4 text-muted">{productInfo.description}</p>
             <ReviewProduct
               product={productInfo}
               fullStar={fullStar}

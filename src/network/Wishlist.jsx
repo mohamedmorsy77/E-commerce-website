@@ -1,9 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const token = localStorage.getItem("token");
+
 export const addProductToWishlist = createAsyncThunk(
   "add/add-Product-To-Wishlist",
   async (productId, { rejectWithValue }) => {
+    const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/wishlist",
@@ -26,6 +27,7 @@ export const addProductToWishlist = createAsyncThunk(
 export const deleteProductFromWishlist = createAsyncThunk(
   "delete/delete-Product-From-Wishlist",
   async (productId, { rejectWithValue }) => {
+    const token = localStorage.getItem("token");
     try {
       const response = await axios.delete(
         `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,

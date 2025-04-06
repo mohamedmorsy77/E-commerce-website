@@ -49,7 +49,7 @@ function ResetPassword() {
   // eslint-disable-next-line
 
   return (
-    <section className="sign">
+    <section className="sign mt-all py-5">
       <ToastContainer />
     
         <div className="container">

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { addProductsToCart } from "./CartApi";
 
 export const authSignUp = createAsyncThunk(
   "auth/sign-up",
@@ -18,7 +19,7 @@ export const authSignUp = createAsyncThunk(
 
 export const authLogin = createAsyncThunk(
   "auth/login",
-  async (userData, { rejectWithValue }) => {
+  async (userData, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/signin",

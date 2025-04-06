@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProductsCard from "../products/ProductsCard";
 import { brandsSelectors } from "../../reducers/BrandsSlice";
 import { productsSelectors } from "../../reducers/ProductsSlice";
+import { ToastContainer } from "react-toastify";
 
 function BrandsDetails() {
   const { id } = useParams();
@@ -19,7 +20,8 @@ function BrandsDetails() {
   console.log(filteredProductsBrands);
 
   return (
-    <section className="products specific-category p-5 mt-all">
+    <section className="products specific-category py-5 px-3 mt-all">
+    <ToastContainer />
       <div className="container">
         <div className="row">
           <div className="col-12">

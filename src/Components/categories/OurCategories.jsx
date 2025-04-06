@@ -11,7 +11,7 @@ function OurCategories() {
   const categories = useSelector(categoriesSelectors.selectAll);
   const { loading } = useSelector((state) => state.categories);
   return (
-    <section className="categories mt-all p-5">
+    <section className="categories mt-all py-5 px-3">
       <div className="container">
         <h1 className="mb-4 text-success">All Categories</h1>
 

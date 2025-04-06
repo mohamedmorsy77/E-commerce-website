@@ -41,7 +41,7 @@ function ResetCode() {
     return <Navigate to="/newPassword" />;
   }
   return (
-    <section className="sign">
+    <section className="sign  mt-all py-5">
       <ToastContainer />
         <div className="container">
           <div>

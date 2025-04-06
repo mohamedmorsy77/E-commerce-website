@@ -21,7 +21,7 @@ function SpecificCategory() {
   
 
   return (
-    <section className="products specific-category p-5 mt-all">
+    <section className="products specific-category py-5 px-3 mt-all">
       <ToastContainer />
       <div className="container">
         <div className="row">

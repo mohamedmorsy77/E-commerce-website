@@ -1,10 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const token = localStorage.getItem("token");
 export const addProductsToCart = createAsyncThunk(
   "Cart/add-product-to-cart",
   async (productId, { rejectWithValue }) => {
+    const token = localStorage.getItem("token");
     try {
+      
       const response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/cart",
         { productId },
@@ -30,8 +31,7 @@ export const addProductsToCart = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   "Cart/updateProduct",
   async ({ productId, count }, { rejectWithValue }) => {
-    console.log(productId)
-    console.log(count)
+    const token = localStorage.getItem("token");
     try {
       const response = await axios.put(
         `https://ecommerce.routemisr.com/api/v1/cart/${productId}?limit=56`, 
@@ -58,6 +58,7 @@ export const updateProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   "cart/delete-product",
   async (productId, { rejectWithValue }) => {
+    const token = localStorage.getItem("token");
     try {
       const response = await axios.delete(
         `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
@@ -83,6 +84,7 @@ export const deleteProduct = createAsyncThunk(
 export const deleteAllProduct = createAsyncThunk(
   "cart/delete-all-product",
   async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem("token");
     try {
       const response = await axios.delete(
         `https://ecommerce.routemisr.com/api/v1/cart`,

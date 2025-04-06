@@ -76,7 +76,7 @@ function Cart() {
     });
   };
   return (
-    <section className="cart p-5 mt-all">
+    <section className="cart py-5 px-3  mt-all">
       <ToastContainer />
       <div className="container">
         <div className="row">

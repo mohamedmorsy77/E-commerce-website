@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "./Header.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { logOut } from "../../reducers/AuthSlice";
@@ -8,29 +8,16 @@ function Header() {
   const authData = useSelector((state) => state.auth);
   const { allProductCount } = useSelector((state) => state.cart);
   const { numberOfWishlist } = useSelector((state) => state.wishlist);
-  const [bgHeader, setBgHeader] = useState("transparent");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logOut());
     navigate("/");
   };
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setBgHeader("bg-white");
-      } else {
-        setBgHeader("transparent");
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    // return () => window.removeEventListener("scroll", handleScroll);
-  });
+
   return (
     <header
-      className={`header transition position-fixed ${
-        bgHeader === "bg-white" ? "bg-white" : ""
-      }`}
+      className={`header transition position-fixed bg-white`}
     >
       <nav className="navbar navbar-expand-lg p-3">
         <div className="container position-relative">
@@ -53,30 +40,30 @@ function Header() {
             className="collapse mt-3 mt-lg-0 flex-grow-0 navbar-collapse"
             id="navbarSupportedContent"
           >
-            <ul className="navbar-nav gap-lg-4 me-4 mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link to="/" className="nav-link active">
+            <ul className="navbar-nav gap-lg-4 me-0 me-lg-4 mb-2 mb-lg-0">
+              <li className="nav-item transition">
+                <NavLink to="/" className="nav-link px-2">
                   Home
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link to="ourProducts" className="nav-link">
+              <li className="nav-item transition">
+                <NavLink to="ourProducts" className="nav-link px-2">
                   Products
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="brands">
+              <li className="nav-item transition">
+                <NavLink className="nav-link px-2" to="brands">
                   Brands
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="categories">
+              <li className="nav-item transition">
+                <NavLink className="nav-link px-2" to="categories">
                   Categories
-                </Link>
+                </NavLink>
               </li>
             </ul>
             {authData.token ? (
-              <ul className="d-flex list-unstyled aligns-item-center gap-3 m-0 p-0">
+              <ul className="d-flex list-unstyled aligns-item-center flex-wrap mt-4 mt-lg-0 gap-3 m-0 p-0">
                 <li>
                   <Link to="all-orders" className="nav-link text-decoration-none position-relative">
                     <i className="ri-truck-fill text-success fs-1"></i>
