@@ -3,9 +3,11 @@ import {
   addProductsToCart,
   deleteAllProduct,
   deleteProduct,
+  getCart,
   updateProduct,
 } from "../network/CartApi";
 import { createCashOrder, createOnlineCashOrder } from "../network/OrderApi";
+import { logOut } from "./AuthSlice";
 
 export const cartAdapter = createEntityAdapter({
   selectId: (product) => product.product,
@@ -42,7 +44,6 @@ export const cartSlice = createSlice({
   }),
   reducers: {
     updateProductCount: (state, action) => {
-      console.log(action);
       const { productId, newCount } = action.payload;
       cartAdapter.updateOne(state, {
         id: productId,
@@ -52,6 +53,32 @@ export const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(logOut, (state) => {
+        state.allProductCount = 0;
+      })
+      .addCase(getCart.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getCart.fulfilled, (state, action) => {
+        const newProduct = action.payload?.data?.products || [];
+        const cartProducts = newProduct.map((cart) => ({
+          count: cart.count,
+          _id: cart._id,
+          product: cart.product.id,
+          price: cart.price,
+        }));
+        state.cartInfo.numOfCartItems = action.payload.numOfCartItems;
+        state.cartInfo.data.totalCartPrice = action.payload.data.totalCartPrice;
+
+        state.allProductCount = sumAllProductCount(newProduct);
+        cartAdapter.setAll(state, cartProducts);
+        state.loading = false;
+        state.cartItems = action.payload;
+      })
+      .addCase(getCart.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(addProductsToCart.pending, (state, action) => {
         state.addProductToCartloadingIds.push(action.meta.arg);
         state.loading = true;
@@ -190,6 +217,7 @@ export const cartSlice = createSlice({
 export const cartSelectors = cartAdapter.getSelectors((state) => state.cart);
 export const { updateProductCount } = cartSlice.actions;
 export {
+  getCart,
   addProductsToCart,
   updateProduct,
   deleteProduct,

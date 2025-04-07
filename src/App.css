@@ -3,7 +3,6 @@
 .active {
   background-color: green;
   color: white !important;
-
 }
 * {
   margin: 0;
@@ -14,14 +13,38 @@
 body {
   font-family: "Montserrat", sans-serif;
 }
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Montserrat", sans-serif;
 }
 input,
 button {
   outline: 0;
 }
-
+::-webkit-scrollbar {
+  width: 0.8rem;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+::-webkit-scrollbar-track {
+  background-color: #eee;
+}
+::-webkit-scrollbar-thumb {
+  background-color: green;
+  width: 0.8rem;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
 .heading-color {
   color: #21313c;
 }
@@ -103,5 +126,28 @@ input[type="radio"]:checked::before {
 @media (min-width: 992px) {
   .table-responsive {
     overflow: hidden;
+  }
+}
+
+.active-heart {
+  color: red;
+  animation: heart-loading 2s alternate infinite ease-out;
+  -webkit-animation: heart-loading 1s alternate infinite ease-out forwards;
+}
+
+@keyframes heart-loading {
+  from {
+    transform: rotate(360deg) scale(1.5);
+    -webkit-transform: rotate(360deg) scale(1.5);
+    -moz-transform: rotate(360deg) scale(1.5);
+    -ms-transform: rotate(360deg) scale(1.5);
+    -o-transform: rotate(360deg) scale(1.5);
+  }
+  to {
+    transform: rotate(-360deg) scale(2);
+    -webkit-transform: rotate(-360deg) scale(2);
+    -moz-transform: rotate(-360deg) scale(2);
+    -ms-transform: rotate(-360deg) scale(2);
+    -o-transform: rotate(-360deg) scale(2);
   }
 }

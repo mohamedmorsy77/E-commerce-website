@@ -29,7 +29,7 @@ function ProductsCard({ product, slider }) {
       )
     : null;
 
-  const handleAction = async (actionMethod, messageSuccess) => {
+    const handleAction = async (actionMethod, messageSuccess) => {
     try {
       const action = await dispatch(actionMethod(product._id)).unwrap();
       toast.success(action.message || messageSuccess, {

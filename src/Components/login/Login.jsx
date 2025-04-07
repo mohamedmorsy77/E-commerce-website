@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { authLogin } from "../../network/AuthApi";
 import InputField from "../reusableInputs/InputField";
 import { PulseLoader } from "react-spinners";
+import { getLoggedUserWishlist } from "../../network/Wishlist";
+import { getCart } from "../../network/CartApi";
 function Login() {
   const redirectedRef = useRef(false);
   const [isLoading, SetLoading] = useState(false);
@@ -25,6 +27,8 @@ function Login() {
       SetLoading(true);
       dispatch(authLogin(values)).then((data) => {
         if (data.payload.message === "success") {
+          dispatch(getCart())
+          dispatch(getLoggedUserWishlist());
           redirectedRef.current = true;
           SetLoading(false);
           setTimeout(() => {

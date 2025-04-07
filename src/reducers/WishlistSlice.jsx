@@ -2,8 +2,11 @@ import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import {
   addProductToWishlist,
   deleteProductFromWishlist,
+  getLoggedUserWishlist,
 } from "../network/Wishlist";
 import { removeLoadingIds } from "./CartSlice";
+import { act } from "react";
+import { logOut } from "./AuthSlice";
 export const wishlistAdapter = createEntityAdapter({
   selectId: (wishlist) => wishlist,
 });
@@ -19,6 +22,23 @@ export const wishlistSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(logOut, (state) => {
+        state.numberOfWishlist = 0;
+      })
+      .addCase(getLoggedUserWishlist.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getLoggedUserWishlist.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cartItems = action.payload;
+        state.numberOfWishlist = action.payload.count;
+        const wishlistIds = action.payload.data.map((product) => product._id);
+        wishlistAdapter.setAll(state, wishlistIds);
+      })
+      .addCase(getLoggedUserWishlist.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(addProductToWishlist.pending, (state, action) => {
         state.wishlistLoadingIds.push(action.meta.arg);
         state.active = true;
@@ -29,6 +49,7 @@ export const wishlistSlice = createSlice({
           state.wishlistLoadingIds,
           action.meta.arg
         );
+
         wishlistAdapter.setAll(state, action.payload.data);
         state.numberOfWishlist = action.payload.data.length;
         state.active = false;
@@ -71,5 +92,9 @@ export const wishListSelectors = wishlistAdapter.getSelectors(
   (state) => state.wishlist
 );
 
-export { addProductToWishlist, deleteProductFromWishlist };
+export {
+  addProductToWishlist,
+  deleteProductFromWishlist,
+  getLoggedUserWishlist,
+};
 export default wishlistSlice.reducer;

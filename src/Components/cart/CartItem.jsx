@@ -14,6 +14,7 @@ function CartItem({
 }) {
   const { updateCartLoadingIds } = useSelector((state) => state.cart);
   const { deleteCartLoadingIds } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const isLoading = useMemo(
     () => updateCartLoadingIds.includes(product._id),
     [product._id, updateCartLoadingIds]
@@ -24,7 +25,7 @@ function CartItem({
     [product._id, deleteCartLoadingIds]
   );
 
-  const dispatch = useDispatch();
+  
 
   // Deletion
   const handleDelete = (id) => {

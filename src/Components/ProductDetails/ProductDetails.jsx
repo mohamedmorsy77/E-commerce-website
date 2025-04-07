@@ -8,8 +8,7 @@ import ReviewProduct from "../review/ReviewProduct";
 import { addProductsToCart } from "../../network/CartApi";
 import { toast, ToastContainer } from "react-toastify";
 import { PulseLoader } from "react-spinners";
-import { cartSelectors } from "../../reducers/CartSlice";
-import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min";
+import { addProductToWishlist } from "../../network/Wishlist";
 
 function ProductDetails() {
   const addProductToCartloadingIds = useSelector(
@@ -19,12 +18,14 @@ function ProductDetails() {
   const productInfo = useSelector((state) =>
     productsSelectors.selectById(state, id)
   );
-  const productItem = useSelector((state) =>
-    cartSelectors.selectById(state, id)
-  );
-  console.log(productItem);
+
   const [currentDisplayImage, setCurrentDisplayImage] = useState(
     productInfo.imageCover
+  );
+  const { wishlistLoadingIds } = useSelector((state) => state.wishlist);
+  const wishlistLoading = useMemo(
+    () => wishlistLoadingIds.includes(id),
+    [id, wishlistLoadingIds]
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,14 +48,21 @@ function ProductDetails() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const tooltipTriggerList = document.querySelectorAll(
-      '[data-bs-toggle="tooltip"]'
-    );
-
-    tooltipTriggerList.forEach((tooltipTriggerEl) => {
-      new Tooltip(tooltipTriggerEl);
-    });
   }, []);
+  const handleWishlist = async () => {
+    try {
+      const action = await dispatch(addProductToWishlist(id)).unwrap();
+      toast.success(action.message || "Added to wishlist successfully!", {
+        position: "top-center",
+      });
+    } catch (err) {
+      navigate("/login");
+
+      toast.error(err || "You are not logged in. Please login to get access", {
+        position: "top-center",
+      });
+    }
+  };
   const handleAddToCart = async () => {
     try {
       const action = await dispatch(addProductsToCart(id)).unwrap();
@@ -62,11 +70,11 @@ function ProductDetails() {
         position: "top-center",
       });
     } catch (err) {
-      navigate("/login");
       setTimeout(() => {
         toast.error(err?.message || "Something went wrong", {
           position: "top-center",
         });
+        navigate("/login");
       }, 500);
     }
   };
@@ -88,20 +96,25 @@ function ProductDetails() {
               </TransformWrapper>
             </div>
             <div className="product-collection d-flex mt-3">
-              {productInfo.length > 1 && productInfo.images.slice(0, 4).map((image, i) => (
-                <div
-                  key={i + 1}
-                  className="mt-2 border  border-success"
-                  onClick={changeProductImage}
-                >
-                  <img className="img-fluid" src={image} alt="product-image" />
-                </div>
-              ))}
+              {productInfo.images.length > 1 &&
+                productInfo.images.slice(0, 4).map((image, i) => (
+                  <div
+                    key={i + 1}
+                    className="mt-2 border  border-success"
+                    onClick={changeProductImage}
+                  >
+                    <img
+                      className="img-fluid"
+                      src={image}
+                      alt="product-image"
+                    />
+                  </div>
+                ))}
             </div>
           </div>
           <div className="col-12 p-md-3 p-xl-5  flex-lg-row  flex-column    col-lg-6 product-description">
             <h5 className="text-success fs-6">{productInfo.title}</h5>
-            <p  className="mt-4 text-muted">{productInfo.description}</p>
+            <p className="mt-4 text-muted">{productInfo.description}</p>
             <ReviewProduct
               product={productInfo}
               fullStar={fullStar}
@@ -135,10 +148,6 @@ function ProductDetails() {
             <div className="addCard border-2 border-bottom d-flex flex-column gap-4  justify-content-start   py-4 border-2 border-bottom">
               <div className="d-flex gap-2  align-items-center">
                 <button
-                  data-bs-custom-class="custom-tooltip"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="You can add multiple items by clicking repeatedly"
                   onClick={handleAddToCart}
                   className="btn transition btn-success fs-5  fw-bold w-100 rounded-2 add-to-cart d-flex justify-content-center gap-2 align-items-center"
                 >
@@ -149,8 +158,13 @@ function ProductDetails() {
                 <button
                   title="wishList"
                   className="wishList btn border-0 fs-5  shadow-sm transition"
+                  onClick={handleWishlist}
                 >
-                  <i class="ri-heart-line"></i>
+                  <i
+                    class={`ri-heart-line ${
+                      wishlistLoading ? "active-heart" : ""
+                    }`}
+                  ></i>
                 </button>
               </div>
             </div>
