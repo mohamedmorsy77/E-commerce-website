@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import './Products.css'
+import { motion } from "framer-motion";
+import "./Products.css";
 import { useNavigate } from "react-router-dom";
 import ReviewProduct from "../review/ReviewProduct";
 import { addProductsToCart } from "../../network/CartApi";
@@ -29,7 +30,7 @@ function ProductsCard({ product, slider }) {
       )
     : null;
 
-    const handleAction = async (actionMethod, messageSuccess) => {
+  const handleAction = async (actionMethod, messageSuccess) => {
     try {
       const action = await dispatch(actionMethod(product._id)).unwrap();
       toast.success(action.message || messageSuccess, {
@@ -129,12 +130,14 @@ function ProductsCard({ product, slider }) {
               {product?.quantity > 0 ? "IN STOCK" : "Out Of Stock"}
             </span>
           </div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.95 }}
             onClick={handleAddToCart}
             className="btn transition btn-success mt-4 fw-bold w-100 rounded-2 add-to-cart"
           >
             Add To Cart {isLoading && <PulseLoader color="#69ca46" size={10} />}
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>
