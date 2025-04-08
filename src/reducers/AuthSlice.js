@@ -30,12 +30,11 @@ export const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(authSignUp.fulfilled, (state, action) => {
-        console.log(action);
         state.loading = false;
         state.status = action.payload;
       })
       .addCase(authSignUp.rejected, (state, action) => {
-        console.log(action);
+        
         state.loading = false;
         state.error = action.error.message;
         state.status = action.payload.message;
@@ -75,11 +74,11 @@ export const authSlice = createSlice({
         } else {
           state.status = action.payload.message;
         }
-        console.log(state.status);
+        
         state.loading = false;
       })
       .addCase(authResetCode.rejected, (state, action) => {
-        console.log(action);
+    
         state.loading = false;
         state.error = action.error.message;
       })
@@ -90,7 +89,7 @@ export const authSlice = createSlice({
         state.loading = false;
       })
       .addCase(createNewPassword.rejected, (state, action) => {
-        console.log(action);
+      
         state.loading = false;
       });
   },

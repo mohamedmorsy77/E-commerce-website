@@ -15,17 +15,17 @@ function HeroInfoSlider({ images, infoOurProducts }) {
   };
 
   return (
-    <div className="slider-container rounded-5 h-100">
-      <Slider {...settings} className="rounded-5 h-100">
+    <div className="slider-container h-100">
+      <Slider {...settings} className=" h-100">
         {images.map((image, index) => {
-          const infoProduct = infoOurProducts[index]; // ربط كل صورة بمعلومات المنتج
+          const infoProduct = infoOurProducts[index]; 
           return (
-            <div key={index + 1} className={`position-relative image-${index + 1}  rounded-4 h-100`}>
+            <div key={`slide-${index}`} className={`position-relative image-${index + 1}  rounded-4 h-100`}>
               {infoProduct && (
-                <div className="info e d-flex flex-column gap-2 p-5">
+                <div className="info  d-flex flex-column gap-2 p-5">
                   <div className="d-flex align-items-center gap-2">
                     <span className="fs-5 text-muted">Exclusive Offer</span>
-                    <span className="d-flex align-items-center justify-content-center px-3 py-1 bg-danger ms-2 text-white fw-bold rounded-2">
+                    <span className="d-flex align-items-center justify-content-center px-3 py-1 bg-danger ms-2 text-white fw-bold">
                       {infoProduct.offer}
                     </span>
                   </div>

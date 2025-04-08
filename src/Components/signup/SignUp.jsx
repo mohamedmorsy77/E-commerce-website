@@ -4,10 +4,12 @@ import { ToastContainer, toast } from "react-toastify";
 import signUp from "../../assets/images/signup-g.svg";
 import { registerSchema } from "../validationSchema/ValidationSchema";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authSignUp } from "../../network/AuthApi";
 import InputField from "../reusableInputs/InputField";
+import { PulseLoader } from "react-spinners";
 function SignUp() {
+  const { loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -21,23 +23,31 @@ function SignUp() {
     validationSchema: registerSchema,
     validateOnChange: true,
     validateOnBlur: true,
-    onSubmit: (values, formikHelper) => {
-      dispatch(authSignUp(values)).then((data) => {
-        if (data.payload.message === "success") {
-          setTimeout(() => {
-            toast.success("Register successful!");
-          }, 100);
+    onSubmit: async (values, formikHelper) => {
+      try {
+        const data = await dispatch(authSignUp(values)).unwrap();
+        if (data.message === "success") {
           formikHelper.resetForm();
-          navigate("/login");
-        } else {
-          toast.error(data.payload.message);
+          setTimeout(() => {
+            toast.success("Registration successful");
+          }, 100);
+          navigate("/");
         }
-      });
+      } catch (error) {
+        toast.error(
+          error && error.message ? error.message : "Account Already Exists"
+        );
+      }
     },
   });
   return (
     <section className="sign mt-all py-2">
-      <ToastContainer />
+      <ToastContainer
+        autoClose={3000}
+        pauseOnHover={false}
+        closeButton={false}
+      />
+
       <div className="container">
         <div className="row m- px-4 align-items-center">
           <div className="col-12 col-lg-6  signup-img text-center text-lg-center mt-4">
@@ -85,7 +95,7 @@ function SignUp() {
                 type="submit"
                 className="btn btn-success fw-medium w-100 mt-4"
               >
-                Register
+                Register {loading && <PulseLoader color="#69ca46" size={10} />}
               </button>
             </form>
             <p className="mt-2">

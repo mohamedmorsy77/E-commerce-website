@@ -31,11 +31,11 @@ function Footer() {
           <div className="col-12 col-xl-5">
               <ul className="list-unstyled m-0 d-flex gap-2 align-items-center justify-content-center justify-content-md-start">
                 <li className="fw-bold">Payment Partners</li>
-                <li className="fw-bold"><Link aria-label="amazon pay"><img src={amazonPay} alt="amazonPay" /></Link></li>
-                <li className="fw-bold"><Link aria-label="american express"><img src={americanExpress} alt="americanExpress" /></Link></li>
-                <li className="fw-bold"><Link aria-label="mastercard"><img src={mastercard} alt="mastercard" /></Link></li>
-                <li className="fw-bold"><Link aria-label="paypal"><img src={paypal} alt="paypal" /></Link></li>
-                <li className="fw-bold"><Link aria-label="visa"><img src={visa} alt="visa" /></Link></li>
+                <li className="fw-bold"><Link aria-label="amazon pay"><img height={28} width={44} src={amazonPay} alt="amazonPay" /></Link></li>
+                <li className="fw-bold"><Link aria-label="american express"><img height={28} width={44} src={americanExpress} alt="americanExpress" /></Link></li>
+                <li className="fw-bold"><Link aria-label="mastercard"><img height={28} width={44} src={mastercard} alt="mastercard" /></Link></li>
+                <li className="fw-bold"><Link aria-label="paypal"><img height={28} width={44} src={paypal} alt="paypal" /></Link></li>
+                <li className="fw-bold"><Link aria-label="visa"><img height={28} width={44} src={visa} alt="visa" /></Link></li>
               </ul>
           </div>
           <div className="col-12 col-xl-7 d-flex flex-column flex-md-row align-items-center justify-content-start mt-4 mt-xl-0 justify-content-xl-end gap-3">
@@ -50,17 +50,17 @@ function Footer() {
         </div>
         <div className="row m-0 py-3">
          <div className="col-12 col-lg-8">
-            <span className="copy-right text-secondary">
+            <span className="copy-right text-dark">
             © 2022 - 2025 FreshCart eCommerce HTML Template. All rights reserved. Powered by<br/>
             <Link className="nav-link text-success text-secondary text-decoration-none" to="https://codescandy.com/">Codescandy.</Link>
             </span>
          </div>
          <div className="col-12 col-lg-4">
             <ul className="list-inline m-0 mt-3 mt-lg-0 d-flex gap-2 align-items-center justify-content-start justify-content-lg-end social">
-              <li className="text-secondary me-4">Follow us on</li>
+              <li className="text-dark me-4">Follow us on</li>
               <li className="list-inline-item  d-flex align-items-center justify-content-center"><Link aria-label="facebook" className="nav-link transition rounded-2  px-2 py-1 text-decoration-none" to="#"><i className="ri-facebook-circle-fill"></i></Link></li>
-              <li className="list-inline-item "><Link aria-label="twitter" className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-twitter-fill"></i></Link></li>
-              <li className="list-inline-item "><Link aria-label="instagram" className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-instagram-line"></i></Link></li>
+              <li className="list-inline-item d-flex align-items-center justify-content-cente "><Link aria-label="twitter" className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-twitter-fill"></i></Link></li>
+              <li className="list-inline-item d-flex align-items-center justify-content-cente"><Link aria-label="instagram" className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-instagram-line"></i></Link></li>
             </ul>
          </div>
         </div>

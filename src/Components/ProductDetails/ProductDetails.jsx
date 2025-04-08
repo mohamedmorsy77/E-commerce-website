@@ -40,6 +40,7 @@ function ProductDetails() {
     () => addProductToCartloadingIds.includes(id),
     [id, addProductToCartloadingIds]
   );
+  console.log(isLoading)
   const changeProductImage = (e) => {
     if (e.target.tagName === "IMG") {
       setCurrentDisplayImage(e.target.src);
@@ -151,9 +152,16 @@ function ProductDetails() {
                   onClick={handleAddToCart}
                   className="btn transition btn-success fs-5  fw-bold w-100 rounded-2 add-to-cart d-flex justify-content-center gap-2 align-items-center"
                 >
-                  <i className="ri-shopping-cart-2-line me-2"></i>
-                  Add To Cart{" "}
-                  {isLoading && <PulseLoader color="#69ca46" size={10} />}
+                  {isLoading ? (
+                    <>
+                      <PulseLoader color="#69ca46" size={10} />
+                    </>
+                  ) : (
+                    <>
+                      <i className="ri-shopping-cart-2-line me-2"></i>
+                      Add To Cart
+                    </>
+                  )}
                 </button>
                 <button
                   title="wishList"
@@ -164,7 +172,7 @@ function ProductDetails() {
                     class={`ri-heart-line ${
                       wishlistLoading ? "active-heart" : ""
                     }`}
-                  ></i>
+                  ></i> 
                 </button>
               </div>
             </div>

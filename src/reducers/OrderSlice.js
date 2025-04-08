@@ -18,7 +18,7 @@ export const orderSlice = createSlice({
         state.loading = true;
       })
       .addCase(getAllOrders.fulfilled, (state, action) => {
-        console.log(action);
+        
         state.loading = false;
         orderAdapter.setAll(state, action.payload.data);
       })

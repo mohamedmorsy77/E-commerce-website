@@ -22,7 +22,7 @@ export const productSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        console.log(action.payload);
+
         state.loading = false;
         state.error = null;
         state.currentpage = action.payload.metadata?.currentPage;

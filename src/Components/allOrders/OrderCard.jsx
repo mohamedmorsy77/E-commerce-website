@@ -2,7 +2,6 @@ import React from "react";
 import OrderDetails from "./OrderDetails";
 
 function OrderCard({ order }) {
-  console.log(order);
   return (
     <div className="col-12 mb-4">
       <div className="card shadow-sm p-3">

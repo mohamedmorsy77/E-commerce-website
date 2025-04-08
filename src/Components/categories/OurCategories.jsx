@@ -1,12 +1,11 @@
 import React from "react";
 import { categoriesSelectors } from "../../reducers/CategoriesSlice";
-import Loading from "../spinner/loading/Loading";
 import { useSelector } from "react-redux";
 import CategoriesCard from "./CategoriesCard";
 import { useNavigate } from "react-router-dom";
 import SkeletonCard from "../skeletonCard/SkeletonCard";
 function OurCategories() {
-  console.log("yes")
+  
   const navigate = useNavigate();
   const categories = useSelector(categoriesSelectors.selectAll);
   const { loading } = useSelector((state) => state.categories);

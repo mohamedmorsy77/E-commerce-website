@@ -6,14 +6,24 @@ import Login from "../Components/login/Login";
 import ResetPassword from "../Components/resetPassword/ResetPassword";
 import ResetCode from "../Components/resetCode/ResetCode";
 import NewPassword from "../Components/newPassword/NewPassword";
-import ProductDetails from "../Components/ProductDetails/ProductDetails";
+
 import ScrollToTop from "../Components/scrollToTop/ScrollToTop";
 import AuthSpinner from "../Components/spinner/authSpinner/AuthSpinner";
-import SpecificCategory from "../Components/categories/SpecificCategory";
-import BrandsDetails from "../Components/brands/BrandsDetails";
+
 import ProtectedRoutes from "./ProtectedRoutes";
 
 import Checkout from "../Components/checkout/Checkout";
+import Loading from "../Components/spinner/loading/Loading";
+const ProductDetails = React.lazy(() =>
+  import("../Components/ProductDetails/ProductDetails")
+);
+const SpecificCategory = React.lazy(() =>
+  import("../Components/categories/SpecificCategory")
+);
+
+const BrandsDetails = React.lazy(() =>
+  import("../Components/brands/BrandsDetails")
+);
 const Wishlist = React.lazy(() => import("../Components/wishlist/Wishlist"));
 const Cart = React.lazy(() => import("../Components/cart/Cart"));
 const Orders = React.lazy(() => import("../Components/allOrders/Orders"));
@@ -28,14 +38,14 @@ const AllProducts = React.lazy(() =>
 
 function AppRouter() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
             index
             element={
-              <Suspense fallback={<AuthSpinner />}>
+              <Suspense fallback={<Loading />}>
                 <ProtectedRoutes>
                   <Home />
                 </ProtectedRoutes>
@@ -58,9 +68,11 @@ function AppRouter() {
           <Route
             path="productDetails/:id"
             element={
-              <ProtectedRoutes>
-                <ProductDetails />
-              </ProtectedRoutes>
+              <Suspense fallback={<Loading />}>
+                <ProtectedRoutes>
+                  <ProductDetails />
+                </ProtectedRoutes>
+              </Suspense>
             }
           />
           <Route
@@ -76,9 +88,11 @@ function AppRouter() {
           <Route
             path="specificCategory/:id"
             element={
-              <ProtectedRoutes>
-                <SpecificCategory />
-              </ProtectedRoutes>
+              <Suspense fallback={<Loading />}>
+                <ProtectedRoutes>
+                  <SpecificCategory />
+                </ProtectedRoutes>
+              </Suspense>
             }
           />
           <Route
@@ -94,9 +108,11 @@ function AppRouter() {
           <Route
             path="specificBrand/:id"
             element={
-              <ProtectedRoutes>
-                <BrandsDetails />
-              </ProtectedRoutes>
+              <Suspense fallback={<Loading />}>
+                <ProtectedRoutes>
+                  <BrandsDetails />
+                </ProtectedRoutes>
+              </Suspense>
             }
           />
           <Route
@@ -130,7 +146,7 @@ function AppRouter() {
           />
         </Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

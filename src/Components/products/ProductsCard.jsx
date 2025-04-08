@@ -61,7 +61,7 @@ function ProductsCard({ product, slider }) {
     >
       <div className="best-sellers product-item transition border-1  card rounded-2 position-relative">
         {discount ? (
-          <div className="sale d-flex align-items-center justify-content-center bg-warning px-3 py-2 rounded-2 text-white fw-medium position-absolute">
+          <div className="sale d-flex align-items-center justify-content-center bg-danger px-3 py-2 rounded-2 text-white fw-medium position-absolute">
             {discount}%
           </div>
         ) : null}
@@ -82,12 +82,12 @@ function ProductsCard({ product, slider }) {
           </button>
         </div>
         <div
-          className="product-image d-flex align-items-center justify-content-center w-100"
+          className="product-image  w-100"
           onClick={() => navigate(`/productDetails/${product["_id"]}`)}
         >
           <img
             src={product.imageCover}
-            className="img-fluid h-100"
+            className="w-100 h-100 object-fit-contain"
             alt={product.title}
             loading="lazy"
           />

@@ -17,7 +17,7 @@ function BrandsDetails() {
   const filteredProductsBrands = products.filter(
     (product) => product.brand["_id"] === id
   );
-  console.log(filteredProductsBrands);
+  
 
   return (
     <section className="products specific-category py-5 px-3 mt-all">

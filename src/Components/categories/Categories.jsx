@@ -6,7 +6,7 @@ import CategoriesCard from "./CategoriesCard";
 import SkeletonCard from "../skeletonCard/SkeletonCard";
 import "./Categories.css";
 function Categories() {
-  console.log("categories")
+
   const categories = useSelector(categoriesSelectors.selectAll);
   const { loading } = useSelector((state) => state.categories);
   const dispatch = useDispatch();

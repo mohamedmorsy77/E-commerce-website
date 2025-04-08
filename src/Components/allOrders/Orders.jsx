@@ -4,13 +4,11 @@ import { ToastContainer } from "react-toastify";
 import { getAllOrders } from "../../network/OrderApi";
 import { orderSelectors } from "../../reducers/OrderSlice";
 import OrderCard from "./OrderCard";
-import AuthSpinner from "../spinner/authSpinner/AuthSpinner";
 import Loading from "../spinner/loading/Loading";
 
 function Orders() {
   const allOrders = useSelector(orderSelectors.selectAll);
   const { loading } = useSelector((state) => state.orders);
-  console.log(allOrders);
   const dispatch = useDispatch();
 
   useEffect(() => {

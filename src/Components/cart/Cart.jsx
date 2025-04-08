@@ -17,7 +17,7 @@ function Cart() {
   const totalCartPrice = useSelector(
     (state) => state.cart.cartInfo?.data?.totalCartPrice || 0
   );
-  // const { loading } = useSelector((state) => state.cart);
+
 
   const products = useSelector(productsSelectors.selectAll);
   const cartItems = useSelector(cartSelectors.selectAll);

@@ -1,9 +1,9 @@
-import React, {  useState } from "react";
+import React from "react";
 import "./Header.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../../assets/images/freshcart-logo.svg";
 import { logOut } from "../../reducers/AuthSlice";
+import { toast } from "react-toastify";
 function Header() {
   const authData = useSelector((state) => state.auth);
   const { allProductCount } = useSelector((state) => state.cart);
@@ -12,17 +12,19 @@ function Header() {
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logOut());
+    setTimeout(() => {
+      toast.success("Signed out successfully");
+    }, 300);
     navigate("/");
   };
 
   return (
-    <header
-      className={`header transition position-fixed bg-white`}
-    >
-      <nav className="navbar navbar-expand-lg p-3">
+    <header className={`header transition position-fixed bg-white`}>
+      <nav className="navbar navbar-expand-lg ">
         <div className="container position-relative">
-          <Link className="navbar-brand" to="/">
-            <img src={logo} alt="logo" />
+          <Link className="navbar-brand d-flex align-items-center gap-1" to="/">
+            <i className="ri-shopping-cart-2-line text-success fs-1"></i>{" "}
+            <h1 className="mb-0 fs-4 text-success fw-bold">ElectraFit</h1>
           </Link>
 
           <button
@@ -42,56 +44,80 @@ function Header() {
           >
             <ul className="navbar-nav gap-lg-4 me-0 me-lg-4 mb-2 mb-lg-0">
               <li className="nav-item transition">
-                <NavLink to="/" className="nav-link px-2">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link  active" : "nav-link "
+                  }
+                >
                   Home
                 </NavLink>
               </li>
               <li className="nav-item transition">
-                <NavLink to="ourProducts" className="nav-link px-2">
+                <NavLink
+                  to="ourProducts"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link  active" : "nav-link "
+                  }
+                >
                   Products
                 </NavLink>
               </li>
               <li className="nav-item transition">
-                <NavLink className="nav-link px-2" to="brands">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "nav-link  active" : "nav-link "
+                  }
+                  to="brands"
+                >
                   Brands
                 </NavLink>
               </li>
               <li className="nav-item transition">
-                <NavLink className="nav-link px-2" to="categories">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "nav-link  active" : "nav-link"
+                  }
+                  to="categories"
+                >
                   Categories
                 </NavLink>
               </li>
             </ul>
             {authData.token ? (
-              <ul className="d-flex list-unstyled aligns-item-center flex-wrap mt-4 mt-lg-0 gap-3 m-0 p-0">
+              <ul className="d-flex list-unstyled aligns-item-center flex-wrap flex-lg-nowrap mt-4 mt-lg-0 gap-3 m-0 p-0">
                 <li>
-                  <Link to="all-orders" className="nav-link text-decoration-none position-relative">
-                    <i className="ri-truck-fill text-success fs-1"></i>
-                    <span className="badge bg-danger  text-white  top-0 end-0 position-absolute">
-                      0
-                    </span>
+                  <Link
+                    to="allorders"
+                    className="nav-link text-decoration-none position-relative"
+                    aria-label="all orders"
+                  >
+                    <i className="ri-truck-line text-success fs-1"></i>
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="wishlist"
-                    className="nav-link text-decoration-none position-relative"
-                  >
-                    <i className="ri-heart-fill text-success fs-1"></i>
-                    <span className="badge bg-danger  text-white  top-0 end-0 position-absolute">
-                      {numberOfWishlist}
-                    </span>
+                  <Link to="wishlist" className="nav-link text-decoration-none" aria-label="wishlist">
+                    <div className="icon-wrapper position-relative">
+                      <i className="ri-heart-line text-success fs-1"></i>
+                      <span className="badge bg-danger  text-white   position-absolute">
+                        {numberOfWishlist}
+                      </span>
+                    </div>
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="cart"
                     className="nav-link text-decoration-none position-relative"
+                    aria-label="cart"
                   >
-                    <i className="ri-shopping-cart-2-fill text-success fs-1"></i>
-                    <span className="badge bg-danger  text-white  top-0 end-0 position-absolute">
-                      {allProductCount}
-                    </span>
+                    <div className="icon-wrapper">
+                      {" "}
+                      <i className="ri-shopping-cart-2-line text-success fs-1"></i>
+                      <span className="badge bg-danger  text-white position-absolute">
+                        {allProductCount}
+                      </span>{" "}
+                    </div>
                   </Link>
                 </li>
                 <li className="user dropdown-center">

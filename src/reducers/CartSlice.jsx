@@ -95,7 +95,7 @@ export const cartSlice = createSlice({
         state.loading = false;
         state.error = null;
         cartAdapter.setAll(state, newProduct);
-        console.log(action.payload);
+     
         state.cartInfo = action.payload || {};
 
         const newProductCount = sumAllProductCount(newProduct);
@@ -116,7 +116,7 @@ export const cartSlice = createSlice({
         state.error = null;
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
-        console.log(action.payload);
+       
         state.updateCartLoadingIds = removeLoadingIds(
           state.updateCartLoadingIds,
           action.meta.arg.productId

@@ -12,6 +12,10 @@ header {
       font-size: 1.2rem;
     }
   }
+  .user {
+    min-width: 100px;
+    min-height: 30px;
+  }
   .sign-out:hover, .settings:hover {
     transform: translateX(10px);
     -webkit-transform: translateX(10px);
@@ -30,4 +34,9 @@ header {
 .dropdown-toggle::after {
   display: none;
 
+}
+
+.icon-wrapper span {
+  right: -10px ;
+  top: -5px;
 }

@@ -4,38 +4,42 @@
   .slider-container {
     .info {
       margin-top: 4rem;
-      a{
+      a {
         width: fit-content;
       }
     }
-    .image-1 {
-      background-image: url("../../assets//images/slider-image-1.webp");
+    .image-1,
+    .image-2,
+    .image-3 {
       background-size: cover;
       background-position: center center;
+      width: 100%;
+      min-height: 200px;
+    }
+    .image-1 {
+      background-image: url("../../assets//images/slider-image-1.webp");
     }
     .image-2 {
       background-image: url("../../assets//images/slider-image-2.webp");
-      background-size: cover;
-      background-position: center center;
     }
     .image-3 {
       background-image: url("../../assets//images/slider-image-3.webp");
-      background-size: cover;
-      background-position: center center;
     }
   }
   .shopNow {
-    div:nth-child(1) {
-      background-image: url("../../assets/images/ad-banner-1.webp");
+    div:nth-child(1),
+    div:nth-child(2) {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
+      width: 100%;
+      min-height: 200px;
+    }
+    div:nth-child(1) {
+      background-image: url("../../assets/images/ad-banner-1.webp");
     }
     div:nth-child(2) {
       background-image: url("../../assets/images/ad-banner-2.webp");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
     }
   }
 }
@@ -69,7 +73,7 @@
   .slider-container {
     .info {
       margin-top: 2.5rem;
-      a{
+      a {
         width: fit-content;
       }
     }

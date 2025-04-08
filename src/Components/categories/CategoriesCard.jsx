@@ -9,7 +9,7 @@ function CategoriesCard({ category, onClick }) {
       >
         <div className="category-image w-100 d-flex justify-content-center">
           <img
-            className="rounded-4 transition"
+            className="img-fluid rounded-4 transition"
             src={`${category.image}?width=240&height=200`}
             alt={category.name}
           />

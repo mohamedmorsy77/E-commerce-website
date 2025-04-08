@@ -33,9 +33,9 @@ function Login() {
           SetLoading(false);
           setTimeout(() => {
             formikHelper.resetForm();
-            navigate("/");
-            toast.success("Login successful!");
+            toast.success("Welcome to ElectraFit");
           }, 500);
+          navigate("/");
         } else {
           SetLoading(false);
           toast.error(data.payload.message);
