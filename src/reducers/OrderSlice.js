@@ -18,9 +18,9 @@ export const orderSlice = createSlice({
         state.loading = true;
       })
       .addCase(getAllOrders.fulfilled, (state, action) => {
-        
+
         state.loading = false;
-        orderAdapter.setAll(state, action.payload.data);
+        orderAdapter.setAll(state, action.payload);
       })
 
       .addCase(getAllOrders.rejected, (state, action) => {

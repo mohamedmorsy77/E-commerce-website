@@ -56,9 +56,9 @@ function Footer() {
             </span>
          </div>
          <div className="col-12 col-lg-4">
-            <ul className="list-inline m-0 mt-3 mt-lg-0 d-flex gap-2 align-items-center justify-content-start justify-content-lg-end social">
-              <li className="text-dark me-4">Follow us on</li>
-              <li className="list-inline-item  d-flex align-items-center justify-content-center"><Link aria-label="facebook" className="nav-link transition rounded-2  px-2 py-1 text-decoration-none" to="#"><i className="ri-facebook-circle-fill"></i></Link></li>
+            <ul className="list-inline m-0 mt-3 mt-lg-0 d-flex  align-items-center justify-content-start justify-content-lg-end social">
+              <li className="text-dark ">Follow us on: </li>
+              <li className="list-inline-item  d-flex align-items-center justify-content-center"><Link aria-label="facebook" className="nav-link transition rounded-2 d-flex align-items-center justify-content-center  px-2 py-1 text-decoration-none" to="#"><i className="ri-facebook-circle-fill"></i></Link></li>
               <li className="list-inline-item d-flex align-items-center justify-content-cente "><Link aria-label="twitter" className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-twitter-fill"></i></Link></li>
               <li className="list-inline-item d-flex align-items-center justify-content-cente"><Link aria-label="instagram" className="nav-link transition  rounded-2  text-decoration-none d-flex align-items-center px-2 py-1 justify-content-center" to="#"><i className="ri-instagram-line"></i></Link></li>
             </ul>

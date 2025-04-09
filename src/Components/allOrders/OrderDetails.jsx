@@ -2,7 +2,7 @@ import React from "react";
 
 function OrderDetails({order}) {
   return (
-    <div class="card card-body">
+    <div className="card card-body">
       <h5 className="mb-2">Order ID: {order.id}</h5>
       <p className="text-muted">
         <strong>Order Time:</strong>{" "}

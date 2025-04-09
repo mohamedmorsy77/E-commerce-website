@@ -5,7 +5,8 @@ import { createNewPassword } from "../../network/AuthApi";
 import { toast, ToastContainer } from "react-toastify";
 import { newPasswordSchema } from "../validationSchema/ValidationSchema";
 import { useNavigate } from "react-router-dom";
-import {PulseLoader} from "react-spinners"
+import { PulseLoader } from "react-spinners";
+import InputField from "../reusableInputs/InputField";
 function NewPassword() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
@@ -44,55 +45,21 @@ function NewPassword() {
         <div className="row  mt-3">
           <div className="col-12">
             <form onSubmit={formik.handleSubmit}>
-              <div className="mt-4">
-                <label className="mb-2 fw-medium">Email</label>
-                <input
-                  type="email"
-                  placeholder="Enter your email address"
-                  className={`form-control ${
-                    formik.touched.email
-                      ? formik.errors.email
-                        ? "is-invalid"
-                        : "is-valid"
-                      : ""
-                  }`}
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  name="email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
-              {formik.errors.email && formik.touched.email && (
-                <div className="invalid-feedback d-block">
-                  {formik.errors.email}
-                </div>
-              )}
-              <div className="mt-4">
-                <label className="mb-2 fw-medium">New Password</label>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className={`form-control ${
-                    formik.touched.newPassword
-                      ? formik.errors.newPassword
-                        ? "is-invalid"
-                        : "is-valid"
-                      : ""
-                  }`}
-                  id="exampleInputPassword1"
-                  name="newPassword"
-                  value={formik.values.newPassword}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
-              {formik.errors.newPassword && formik.touched.newPassword && (
-                <div className="invalid-feedback d-block">
-                  {formik.errors.newPassword}
-                </div>
-              )}
+              <InputField
+                type="email"
+                name="email"
+                placeholder="Enter your email address"
+                formik={formik}
+                label="Email"
+              />
+              <InputField
+                type="password"
+                name="newPassword"
+                placeholder="Enter new password"
+                formik={formik}
+                label="New Password"
+              />
+
               <button
                 className="btn fw-bold  btn-success w-100 mt-5"
                 type="submit"

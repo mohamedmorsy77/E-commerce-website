@@ -50,7 +50,7 @@ function AllProducts() {
   return (
     <section className="allProducts products mt-all py-5">
       <ToastContainer />
-      <div className="container">
+      <div className="container p-0">
         <div className="row mt-4">
           <div className="col-12 d-flex gap-5 align-items-center">
             <h2 className="text-success">All Products</h2>
@@ -112,7 +112,7 @@ function AllProducts() {
           </div>
         </div>
 
-        <div className="row mt-3">
+        <div className="row mt-3 m-0">
           {loading ? (
             Array.from({ length: 8 }).map((_, i) => (
               <SkeletonCard key={i + 1} />

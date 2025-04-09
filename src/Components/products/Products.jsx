@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Products.css";
 
-import Loading from "../spinner/loading/Loading";
+
 
 import { fetchProducts } from "../../network/ProductApi";
 import { productsSelectors } from "../../reducers/ProductsSlice";
@@ -12,7 +12,7 @@ import SkeletonCard from "../skeletonCard/SkeletonCard";
 function Products() {
   const products = useSelector(productsSelectors.selectAll);
   const { loading } = useSelector((state) => state.products);
-
+  
   const dispatch = useDispatch();
   useEffect(() => {
     if (products.length === 0) {
@@ -27,9 +27,9 @@ function Products() {
   }, [products]);
 
   return (
-    <section className="products py-5">
+    <section className="products overflow-hidden py-5">
       <ToastContainer />
-      <div className="container">
+      <div className="container p-0">
         <div className="row m-0">
           <div className="col-12">
             <h3 className="text-success fw-medium mb-4">
@@ -43,11 +43,12 @@ function Products() {
             ? Array.from({ length: popularProducts.length }).map((_, i) => (
                 <SkeletonCard key={i + 1} />
               ))
-            : popularProducts.map((product) => (
+            : popularProducts.map((product,i) => (
                 <ProductsCard
                   key={product["_id"]}
                   product={product}
                   slider={false}
+                  index = {i}
                 />
               ))}
         </div>

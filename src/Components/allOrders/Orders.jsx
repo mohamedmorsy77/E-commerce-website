@@ -8,12 +8,13 @@ import Loading from "../spinner/loading/Loading";
 
 function Orders() {
   const allOrders = useSelector(orderSelectors.selectAll);
+  const { cartOwner } = useSelector((state) => state.cart.cartInfo.data);
   const { loading } = useSelector((state) => state.orders);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllOrders());
-  }, [dispatch]);
+    dispatch(getAllOrders(cartOwner));
+  }, [dispatch, cartOwner]);
 
   return (
     <section className="mt-all py-5">
@@ -29,7 +30,7 @@ function Orders() {
           {loading ? (
             <Loading />
           ) : allOrders?.length > 0 ? (
-            allOrders.map((order) => (
+            allOrders.reverse().map((order) => (
               <OrderCard key={order._id} order={order} />
             ))
           ) : (

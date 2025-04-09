@@ -39,10 +39,10 @@ function Header() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            className="collapse mt-3 mt-lg-0 flex-grow-0 navbar-collapse"
+            className="collapse mt-3 mt-lg-0 gap-2 flex-grow-0 navbar-collapse"
             id="navbarSupportedContent"
           >
-            <ul className="navbar-nav gap-lg-4 me-0 me-lg-4 mb-2 mb-lg-0">
+            <ul className="navbar-nav gap-2 me-0 me-lg-4 mb-2 mb-lg-0">
               <li className="nav-item transition">
                 <NavLink
                   to="/"
@@ -85,7 +85,7 @@ function Header() {
               </li>
             </ul>
             {authData.token ? (
-              <ul className="d-flex list-unstyled aligns-item-center flex-wrap flex-lg-nowrap mt-4 mt-lg-0 gap-3 m-0 p-0">
+              <ul className="d-flex list-unstyled  aligns-item-center flex-wrap flex-lg-nowrap mt-4 mt-lg-0 gap-4 m-0 p-0">
                 <li>
                   <Link
                     to="allorders"

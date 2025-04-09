@@ -64,12 +64,14 @@ function Login() {
                 name="email"
                 placeholder="Enter your email address"
                 formik={formik}
+                label="Email"
               />
               <InputField
                 type="password"
                 name="password"
                 placeholder="****"
                 formik={formik}
+                label="Password"
               />
 
               <div className="forgetPass d-flex gap-1 mt-3">

@@ -5,12 +5,23 @@ import { deleteProduct, updateProduct } from "../../network/CartApi";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
 
+export const rowVariants = {
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0 },
+  exit: {
+    scale: 0.95,
+    x: -500,
+    transition: { duration: 0.3, ease: "easeInOut" },
+  },
+};
 function CartItem({
   product,
   handleDecrease,
   handleIncrease,
   handleConfirmDelete,
+  index
 }) {
   const { updateCartLoadingIds } = useSelector((state) => state.cart);
   const { deleteCartLoadingIds } = useSelector((state) => state.cart);
@@ -58,10 +69,10 @@ function CartItem({
   };
 
   return (
-    <tr key={product._id} className="w-100 border-bottom bg-white rounded-3 ">
+    <motion.tr variants={rowVariants} initial="hidden" animate="visible" exit="exit" transition={{delay: index * 0.08 , duration: 0.1}}  key={product._id} className="w-100 border-bottom bg-white rounded-3 ">
       <td colSpan="5" className="d-inline-flex align-items-center gap-2">
         <img
-          className="cart-image object-fit-contain"
+          className="cart-image  object-fit-contain"
           src={product.imageCover}
           alt="product-image"
         />
@@ -117,7 +128,7 @@ function CartItem({
           Delete {LoadingWithDelete && <PulseLoader color="#69ca46" size={5} />}
         </button>
       </td>
-    </tr>
+    </motion.tr>
   );
 }
 

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-
+import { motion, useInView } from "framer-motion";
 function HeroInfoSlider({ images, infoOurProducts }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   const settings = {
     dots: true,
     infinite: true,
@@ -15,12 +17,23 @@ function HeroInfoSlider({ images, infoOurProducts }) {
   };
 
   return (
-    <div className="slider-container h-100">
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: 0.1, duration: 0.5, ease: "easeInOut" }}
+      ref={ref}
+      className="slider-container h-100"
+    >
       <Slider {...settings} className=" h-100">
         {images.map((image, index) => {
-          const infoProduct = infoOurProducts[index]; 
+          const infoProduct = infoOurProducts[index];
           return (
-            <div key={`slide-${index}`} className={`position-relative image-${index + 1}  rounded-4 h-100`}>
+            <div
+              key={`slide-${index}`}
+              className={`position-relative image-${
+                index + 1
+              }  rounded-4 h-100`}
+            >
               {infoProduct && (
                 <div className="info  d-flex flex-column gap-2 p-5">
                   <div className="d-flex align-items-center gap-2">
@@ -50,12 +63,11 @@ function HeroInfoSlider({ images, infoOurProducts }) {
                   </Link>
                 </div>
               )}
-             
             </div>
           );
         })}
       </Slider>
-    </div>
+    </motion.div>
   );
 }
 

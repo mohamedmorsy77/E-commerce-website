@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 import "./Cart.css";
 import { useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 function Cart() {
   const navigate = useNavigate();
   const numOfCartItems = useSelector(
@@ -17,7 +18,6 @@ function Cart() {
   const totalCartPrice = useSelector(
     (state) => state.cart.cartInfo?.data?.totalCartPrice || 0
   );
-
 
   const products = useSelector(productsSelectors.selectAll);
   const cartItems = useSelector(cartSelectors.selectAll);
@@ -112,27 +112,36 @@ function Cart() {
                     </tr>
                   </thead>
                   <tbody>
-                    {mergeProduct &&
-                      mergeProduct.map((product) => (
-                        <CartItem
-                          key={product._id}
-                          product={product}
-                          handleIncrease={handleIncrease}
-                          handleDecrease={handleDecrease}
-                          handleConfirmDelete={handleConfirmDelete}
-                        />
-                      ))}
+                    <AnimatePresence>
+                      {mergeProduct &&
+                        mergeProduct.map((product, index) => (
+                          <CartItem
+                            key={product._id}
+                            product={product}
+                            handleIncrease={handleIncrease}
+                            handleDecrease={handleDecrease}
+                            handleConfirmDelete={handleConfirmDelete}
+                            index ={index}
+                          />
+                        ))}
+                    </AnimatePresence>
                   </tbody>
                 </table>
               ) : (
-                <p className="fs-1 fw-medium text-bg-light p-4 text-center">Your Cart Is Empty</p>
+                <p className="fs-1 fw-medium text-bg-light p-4 text-center">
+                  Your Cart Is Empty
+                </p>
               )}
             </div>
           </div>
           <div className="col-12 col-lg-4 mt-4">
             <div className="summary p-3 rounded-2  shadow">
               <h4>Total Price: ${totalCartPrice}</h4>
-              <button disabled={numOfCartItems === 0} className="btn btn-dark mt-3 w-100 fw-bold" onClick={() => navigate("/checkout")}>
+              <button
+                disabled={numOfCartItems === 0}
+                className="btn btn-dark mt-3 w-100 fw-bold"
+                onClick={() => navigate("/checkout")}
+              >
                 Continue to checkout
               </button>
             </div>

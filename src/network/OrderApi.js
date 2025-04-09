@@ -57,10 +57,10 @@ export const createOnlineCashOrder = createAsyncThunk(
 
 export const getAllOrders = createAsyncThunk(
   "Get/get-all-orders",
-  async (_, { rejectWithValue }) => {
+  async (cartOwner, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://ecommerce.routemisr.com/api/v1/orders/"
+        `https://ecommerce.routemisr.com/api/v1/orders/user/${cartOwner}`
       );
       return response.data;
     } catch (err) {

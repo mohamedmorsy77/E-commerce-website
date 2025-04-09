@@ -1,10 +1,10 @@
 import React from "react";
 
-function InputField({ type, name, placeholder, formik }) {
+function InputField({ type, name, placeholder, formik, label }) {
   return (
     <>
       <div className="mt-4">
-        <label className="mb-2 text-success fw-medium">{name}</label>
+        <label className="mb-2 text-success fw-medium">{label}</label>
         <input
           type={type}
           placeholder={placeholder}

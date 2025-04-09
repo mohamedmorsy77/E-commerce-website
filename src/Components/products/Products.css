@@ -15,13 +15,17 @@
         background-color: rgb(24, 196, 24);
         color: white;
       }
-
     }
     .product-title {
       font-size: 0.9em;
     }
     .product-image {
       height: 230px;
+      img {
+        height: 250px;
+        max-width: 100%;
+        
+      }
     }
     .price {
       .stock {
@@ -31,9 +35,9 @@
     .sale {
       top: 20px;
       left: 20px;
-      animation: scale 1s ease-in  infinite alternate-reverse;
-      -webkit-animation: scale 1s ease-in  infinite alternate-reverse;
-}
+      animation: scale 1s ease-in infinite alternate-reverse;
+      -webkit-animation: scale 1s ease-in infinite alternate-reverse;
+    }
   }
 }
 .product-item:hover {
@@ -69,24 +73,19 @@
   }
 }
 
-
-@keyframes scale{
+@keyframes scale {
   from {
     transform: scale(1.05);
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
     -ms-transform: scale(1.05);
     -o-transform: scale(1.05);
-    
-}
+  }
   to {
     transform: scale(1.2);
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
     -ms-transform: scale(1.2);
     -o-transform: scale(1.2);
-   
   }
 }
-
-

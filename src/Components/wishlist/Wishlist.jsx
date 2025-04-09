@@ -5,6 +5,7 @@ import { productsSelectors } from "../../reducers/ProductsSlice";
 import { wishListSelectors } from "../../reducers/WishlistSlice";
 import WishlistCard from "./WishlistCard";
 import { ToastContainer } from "react-toastify";
+import { AnimatePresence } from "framer-motion";
 function Wishlist() {
   const allProducts = useSelector(productsSelectors.selectAll);
   const wishListIds = useSelector(wishListSelectors.selectAll);
@@ -36,25 +37,26 @@ function Wishlist() {
             {productsInWishlist.length >= 1 ? (
               <table className="table transition">
                 <thead className="">
-                  <th className="p-3  text-success ">
-                    Product Info
-                  </th>
-                  <th className="p-3 text-center text-success  ">
-                    Unit price
-                  </th>
-                  <th className="p-3  text-success">
-                    stock status
-                  </th>
+                  <tr>
+                    <th className="p-3  text-success ">Product Info</th>
+                    <th className="p-3 text-center text-success  ">
+                      Unit price
+                    </th>
+                    <th className="p-3  text-success">stock status</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  {productsInWishlist.map((product) => (
-                    <WishlistCard key={product._id} product={product} />
-                  ))}
+                  <AnimatePresence>
+                    {" "}
+                    {productsInWishlist.map((product, index) => (
+                      <WishlistCard key={product._id} product={product} index={index}/>
+                    ))}
+                  </AnimatePresence>
                 </tbody>
               </table>
             ) : (
               <p className="fs-1 fw-medium text-bg-light p-4 text-center">
-                Your Wish List is empty <i class="ri-empathize-fill"></i>
+                Your Wish List is empty <i className="ri-empathize-fill"></i>
               </p>
             )}
           </div>

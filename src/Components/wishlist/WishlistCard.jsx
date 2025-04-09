@@ -1,11 +1,14 @@
 import React, {  useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProductFromWishlist } from "../../network/Wishlist";
+import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import { addProductsToCart } from "../../network/CartApi";
-function WishlistCard({ product }) {
+import { rowVariants } from "../cart/CartItem";
+
+function WishlistCard({ product , index}) {
   const { wishlistLoadingIds } = useSelector((state) => state.wishlist);
   const { addProductToCartloadingIds } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -46,7 +49,7 @@ function WishlistCard({ product }) {
     handleAction(addProductsToCart , "Added to cart successfully!");
 
   return (
-    <tr className="transition">
+    <motion.tr variants={rowVariants} initial="hidden" animate="visible" exit="exit" transition={{delay: index * 0.08 , duration: 0.1}}  className="transition">
       <td className="d-inline-flex align-items-center gap-3 py-2 overflow-hidden">
         <img src={product.imageCover} alt="flflf" />
         <div className="product-info overflow-hidden ">
@@ -75,7 +78,7 @@ function WishlistCard({ product }) {
               <PulseLoader color="#69ca46" size={4} />
             ) : (
               <span>
-                <i class="ri-shopping-cart-2-line"></i>
+                <i className="ri-shopping-cart-2-line"></i>
               </span>
             )}
           </button>
@@ -87,12 +90,12 @@ function WishlistCard({ product }) {
             {isLoading ? (
               <PulseLoader color="#69ca46" size={4} />
             ) : (
-              <i class="ri-delete-bin-6-line"></i>
+              <i className="ri-delete-bin-6-line"></i>
             )}
           </button>
         </div>
       </td>
-    </tr>
+    </motion.tr>
   );
 }
 

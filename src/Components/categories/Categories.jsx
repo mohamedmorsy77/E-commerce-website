@@ -18,7 +18,7 @@ function Categories() {
 
   return (
     <section className="categories py-5">
-      <div className="container">
+      <div className="container p-0">
         <div className="row m-0 mb-4">
           <div className="col-12">
             <h3 className="text-success fw-medium mb-4">
@@ -32,8 +32,8 @@ function Categories() {
             ? Array.from({ length: categories.length }).map((_, i) => (
                 <SkeletonCard key={i + 1} />
               ))
-            : categories.map((category) => (
-                <CategoriesCard key={category["_id"]} category={category} />
+            : categories.map((category, index) => (
+                <CategoriesCard key={category["_id"]} category={category} index={index}/>
               ))}
         </div>
       </div>

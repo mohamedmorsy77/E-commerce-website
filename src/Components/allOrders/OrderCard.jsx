@@ -5,9 +5,9 @@ function OrderCard({ order }) {
   return (
     <div className="col-12 mb-4">
       <div className="card shadow-sm p-3">
-        <p class="d-inline-flex ">
+        <p className="d-inline-flex ">
           <button
-            class="btn btn-success"
+            className="btn btn-success"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target={`#${order.id}`}
@@ -17,7 +17,7 @@ function OrderCard({ order }) {
             View order details
           </button>
         </p>
-        <div class="collapse" id={`${order.id}`}>
+        <div className="collapse" id={`${order.id}`}>
           <OrderDetails key={order.id} order={order} />
         </div>
 

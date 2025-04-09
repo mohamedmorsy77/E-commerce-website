@@ -29,7 +29,7 @@ function SpecificCategory() {
             <div className="cat-image position-relative d-flex align-items-center justify-content-center">
               <img
                 src={categoryInfo.image}
-                className="h-100 object-fit-contain"
+                className=" img-fluid h-100 object-fit-contain"
                 alt={categoryInfo.name}
               />
             </div>
@@ -41,7 +41,7 @@ function SpecificCategory() {
             </h1>
           </div>
         </div>
-        <div className="row">
+        <div className="row overflow-hidden">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <ProductsCard
@@ -53,7 +53,7 @@ function SpecificCategory() {
           ) : (
             <div className="text-center mt-5 fw-bold fs-2">
               Sorry , No products by this name for now{" "}
-              <i class="ri-emotion-sad-fill text-warning fs-1"></i>
+              <i className="ri-emotion-sad-fill text-warning fs-1"></i>
             </div>
           )}
         </div>

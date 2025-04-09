@@ -17,7 +17,7 @@ function Brands() {
   }, [dispatch]);
   return (
     <section className="brands p-5 mt-all">
-      <div className="container">
+      <div className="container p-0">
         <div className="row">
           <h1 className="text-success">All Brands</h1>
         </div>
@@ -25,11 +25,12 @@ function Brands() {
         <div className="row mt-5">
           {loading
             ? Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
-            : brands.map((brand) => (
+            : brands.map((brand, index) => (
                 <BrandCard
                   key={brand._id}
                   brand={brand}
                   onClick={() => navigate(`/specificBrand/${brand["_id"]}`)}
+                  index={index}
                 />
               ))}
         </div>

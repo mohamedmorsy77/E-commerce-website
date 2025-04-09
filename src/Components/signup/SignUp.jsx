@@ -65,30 +65,35 @@ function SignUp() {
                 name="name"
                 placeholder="Enter your Name"
                 formik={formik}
+                label="User Name"
               />
               <InputField
                 type="email"
                 name="email"
                 placeholder="Enter your email address"
                 formik={formik}
+                label="Email"
               />
               <InputField
                 type="password"
                 name="password"
                 placeholder="Password"
                 formik={formik}
+                label="Password"
               />
               <InputField
                 type="password"
                 name="rePassword"
                 placeholder="Confirm Password"
                 formik={formik}
+                label="RePassword"
               />
               <InputField
                 type="text"
                 placeholder="Phone Number"
                 name="phone"
                 formik={formik}
+                label="Phone"
               />
 
               <button

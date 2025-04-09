@@ -169,7 +169,7 @@ function ProductDetails() {
                   onClick={handleWishlist}
                 >
                   <i
-                    class={`ri-heart-line ${
+                    className={`ri-heart-line ${
                       wishlistLoading ? "active-heart" : ""
                     }`}
                   ></i> 
