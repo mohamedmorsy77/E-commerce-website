@@ -13,7 +13,8 @@ const stripe = loadStripe(
 );
 function Checkout() {
   const navigate = useNavigate();
-  const { cartId, loading } = useSelector((state) => state.cart.cartInfo);
+  const { loading } = useSelector((state) => state.cart);
+  const { cartId } = useSelector((state) => state.cart.cartInfo);
   console.log(cartId)
   const [paymentMethod, setPaymentMethod] = useState("cash");
 
