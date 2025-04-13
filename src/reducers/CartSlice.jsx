@@ -24,6 +24,7 @@ function deleteAllInCart(state, cartAdapter) {
   cartAdapter.removeAll(state);
   state.cartInfo.numOfCartItems = 0;
   state.cartInfo.data.totalCartPrice = 0;
+  state.cartInfo = {};
 }
 export function removeLoadingIds(loadingIds, actionId) {
   return loadingIds.filter((id) => id !== actionId);
@@ -57,12 +58,12 @@ export const cartSlice = createSlice({
       .addCase(logOut, (state) => {
         state.allProductCount = 0;
         state.cartOwner = "";
+        state.cartInfo = {};
       })
       .addCase(getCart.pending, (state) => {
         state.loading = true;
       })
       .addCase(getCart.fulfilled, (state, action) => {
-        console.log(action.payload);
         const newProduct = action.payload?.data?.products || [];
         const cartProducts = newProduct.map((cart) => ({
           count: cart.count,
@@ -70,13 +71,15 @@ export const cartSlice = createSlice({
           product: cart.product.id,
           price: cart.price,
         }));
+        state.cartInfo = action.payload;
         state.cartInfo.numOfCartItems = action.payload.numOfCartItems;
         state.cartInfo.data.totalCartPrice = action.payload.data.totalCartPrice;
 
         state.allProductCount = sumAllProductCount(newProduct);
         cartAdapter.setAll(state, cartProducts);
         state.loading = false;
-        state.cartInfo = action.payload;
+       
+        console.log(action.payload);
         state.cartOwner = action.payload.data?.cartOwner || "";
       })
       .addCase(getCart.rejected, (state, action) => {
@@ -99,9 +102,9 @@ export const cartSlice = createSlice({
         state.loading = false;
         state.error = null;
         cartAdapter.setAll(state, newProduct);
-     
+
         state.cartInfo = action.payload || {};
-        state.cartOwner = action.payload.data?.cartOwner || ""; 
+        state.cartOwner = action.payload.data?.cartOwner || "";
 
         const newProductCount = sumAllProductCount(newProduct);
         state.allProductCount = newProductCount;
@@ -121,7 +124,6 @@ export const cartSlice = createSlice({
         state.error = null;
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
-       
         state.updateCartLoadingIds = removeLoadingIds(
           state.updateCartLoadingIds,
           action.meta.arg.productId

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { addProductToWishlist } from "../../network/Wishlist";
-function ProductsCard({ product, slider,index }) {
+function ProductsCard({ product, slider, index }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const { addProductToCartloadingIds } = useSelector((state) => state.cart);
@@ -62,9 +62,7 @@ function ProductsCard({ product, slider,index }) {
       initial={{ opacity: 0, x: 50 }}
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
       transition={{ delay: index * 0.1, ease: "easeIn", duration: 0.5 }}
-      className={` col-sm-6 col-md-4 col-xl-3 mt-5 ${
-        slider ? "w-100" : ""
-      }`}
+      className={` col-sm-6 col-md-4 col-xl-3 mt-5 ${slider ? "w-100" : ""}`}
     >
       <div className="best-sellers product-item transition border-1  card rounded-2 position-relative">
         {discount ? (
@@ -73,7 +71,6 @@ function ProductsCard({ product, slider,index }) {
           </div>
         ) : null}
         <div className="product-action transition d-flex position-absolute flex-column gap-2">
-        
           <button
             onClick={handleWishList}
             title="wishList"
@@ -98,19 +95,22 @@ function ProductsCard({ product, slider,index }) {
           />
         </div>
         <div className="card-body p-3">
-          <h4 className="text-success">{product?.category?.name}</h4>
-          <span
-            title={product?.title}
-            className="fw-medium product-title text-black text-truncate d-block  "
-          >
-            {product?.title}
-          </span>
-          <ReviewProduct
-            product={product}
-            fullStar={fullStar}
-            halfStar={halfStar}
-            emptystar={emptystar}
-          />
+          <div  onClick={() => navigate(`/productDetails/${product["_id"]}`)}>
+            {" "}
+            <h4 className="text-success">{product?.category?.name}</h4>
+            <span
+              title={product?.title}
+              className="fw-medium product-title text-black text-truncate d-block  "
+            >
+              {product?.title}
+            </span>
+            <ReviewProduct
+              product={product}
+              fullStar={fullStar}
+              halfStar={halfStar}
+              emptystar={emptystar}
+            />
+          </div>
           <div className="price mt-4 d-flex justify-content-between align-items-center">
             {product?.priceAfterDiscount ? (
               <div className="d-flex align-items-center">
