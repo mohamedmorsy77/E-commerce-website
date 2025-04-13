@@ -5,7 +5,7 @@ import { categoriesSelectors } from "../../reducers/CategoriesSlice";
 import { useSelector } from "react-redux";
 import { productsSelectors } from "../../reducers/ProductsSlice";
 import ProductsCard from "../products/ProductsCard";
-import { ToastContainer } from "react-toastify";
+
 
 function SpecificCategory() {
   const { id } = useParams();
@@ -22,7 +22,7 @@ function SpecificCategory() {
 
   return (
     <section className="products specific-category py-5 px-3 mt-all">
-      <ToastContainer />
+     
       <div className="container">
         <div className="row">
           <div className="col-12">

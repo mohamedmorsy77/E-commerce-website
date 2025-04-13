@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { productsSelectors } from "../../reducers/ProductsSlice";
 import ReviewProduct from "../review/ReviewProduct";
 import { addProductsToCart } from "../../network/CartApi";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import { addProductToWishlist } from "../../network/Wishlist";
 
@@ -81,7 +81,7 @@ function ProductDetails() {
   };
   return (
     <section className="product-details mt-all py-5">
-      <ToastContainer />
+      
       <div className="container  w-100 d-flex align-items-center justify-content-center">
         <div className="row w-100  align-items-start ">
           <div className="col-12 py-4 align-self-center flex-lg-row flex-column   col-lg-6 product-images">

@@ -34,6 +34,7 @@ export const cartSlice = createSlice({
   initialState: cartAdapter.getInitialState({
     error: null,
     cartInfo: {},
+    cartOwner: "",
     allProductCount: 0,
     addProductToCartloadingIds: [],
     updateCartLoadingIds: [],
@@ -55,11 +56,13 @@ export const cartSlice = createSlice({
     builder
       .addCase(logOut, (state) => {
         state.allProductCount = 0;
+        state.cartOwner = "";
       })
       .addCase(getCart.pending, (state) => {
         state.loading = true;
       })
       .addCase(getCart.fulfilled, (state, action) => {
+        console.log(action.payload);
         const newProduct = action.payload?.data?.products || [];
         const cartProducts = newProduct.map((cart) => ({
           count: cart.count,
@@ -73,7 +76,8 @@ export const cartSlice = createSlice({
         state.allProductCount = sumAllProductCount(newProduct);
         cartAdapter.setAll(state, cartProducts);
         state.loading = false;
-        state.cartItems = action.payload;
+        state.cartInfo = action.payload;
+        state.cartOwner = action.payload.data?.cartOwner || "";
       })
       .addCase(getCart.rejected, (state, action) => {
         state.loading = false;
@@ -97,6 +101,7 @@ export const cartSlice = createSlice({
         cartAdapter.setAll(state, newProduct);
      
         state.cartInfo = action.payload || {};
+        state.cartOwner = action.payload.data?.cartOwner || ""; 
 
         const newProductCount = sumAllProductCount(newProduct);
         state.allProductCount = newProductCount;

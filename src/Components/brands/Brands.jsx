@@ -18,11 +18,11 @@ function Brands() {
   return (
     <section className="brands p-5 mt-all">
       <div className="container p-0">
-        <div className="row">
-          <h1 className="text-success">All Brands</h1>
+        <div className="row m-0 ">
+          <h1 className="text-success p-0">All Brands</h1>
         </div>
 
-        <div className="row mt-5">
+        <div className="row mt-5 overflow-hidden">
           {loading
             ? Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
             : brands.map((brand, index) => (

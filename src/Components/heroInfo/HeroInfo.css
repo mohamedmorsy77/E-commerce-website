@@ -1,6 +1,38 @@
 .hero-info {
   margin-top: 76.79px;
-
+  .search {
+    background-image: linear-gradient(
+      to left,
+      rgba(53, 144, 69, 0.3),
+      transparent
+    );
+  }
+  .search,
+  .product-after-search {
+    box-shadow: 0px 25px 80px rgba(53, 144, 69, 0.2);
+    transition: all 3s ease;
+    &:focus-within {
+      background-image: linear-gradient(
+        to left,
+        transparent,
+        rgba(53, 144, 69, 0.3)
+      );
+    }
+    .product-info {
+      cursor: pointer;
+    }
+  }
+  .product-after-search {
+    max-height: 500px;
+    background-image: linear-gradient(to left, rgba(53, 144, 69, 0.8));
+    top: 70px;
+    left: 0;
+    z-index: 100;
+    .product-info {
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+    }
+  }
   .slider-container {
     .info {
       margin-top: 4rem;

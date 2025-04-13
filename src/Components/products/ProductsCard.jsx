@@ -11,7 +11,6 @@ import { addProductToWishlist } from "../../network/Wishlist";
 function ProductsCard({ product, slider,index }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  console.log(isInView);
   const { addProductToCartloadingIds } = useSelector((state) => state.cart);
   const { wishlistLoadingIds } = useSelector((state) => state.wishlist);
   const wishlistLoading = useMemo(
@@ -63,7 +62,7 @@ function ProductsCard({ product, slider,index }) {
       initial={{ opacity: 0, x: 50 }}
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
       transition={{ delay: index * 0.1, ease: "easeIn", duration: 0.5 }}
-      className={`col-12 col-sm-6 col-md-4 col-xl-3 mt-5 ${
+      className={` col-sm-6 col-md-4 col-xl-3 mt-5 ${
         slider ? "w-100" : ""
       }`}
     >

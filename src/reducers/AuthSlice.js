@@ -4,17 +4,23 @@ import {
   authResetCode,
   authResetPassword,
   authSignUp,
+  changeMyPassword,
+  changeMyProfile,
   createNewPassword,
+  getUserData,
 } from "../network/AuthApi";
-
+import { jwtDecode } from "jwt-decode";
+import { act } from "react";
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
     token: localStorage.getItem("token") || "",
     user: JSON.parse(localStorage.getItem("user")) || "",
+    userId: localStorage.getItem("userId") || "",
     loading: null,
     error: null,
     status: null,
+    userProfileData: localStorage.getItem("user-profile-data") || {},
   },
   reducers: {
     logOut: (state) => {
@@ -32,9 +38,9 @@ export const authSlice = createSlice({
       .addCase(authSignUp.fulfilled, (state, action) => {
         state.loading = false;
         state.status = action.payload;
+        console.log(action.payload);
       })
       .addCase(authSignUp.rejected, (state, action) => {
-        
         state.loading = false;
         state.error = action.error.message;
         state.status = action.payload.message;
@@ -43,12 +49,14 @@ export const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(authLogin.fulfilled, (state, action) => {
+        const decode = jwtDecode(action.payload.token);
         state.loading = false;
         state.token = action.payload.token;
         state.user = action.payload.user;
-
+        state.userId = decode.id;
         localStorage.setItem("token", state.token);
         localStorage.setItem("user", JSON.stringify(state.user));
+        localStorage.setItem("userId", state.userId);
       })
       .addCase(authLogin.rejected, (state, action) => {
         state.loading = false;
@@ -74,11 +82,10 @@ export const authSlice = createSlice({
         } else {
           state.status = action.payload.message;
         }
-        
+
         state.loading = false;
       })
       .addCase(authResetCode.rejected, (state, action) => {
-    
         state.loading = false;
         state.error = action.error.message;
       })
@@ -89,8 +96,61 @@ export const authSlice = createSlice({
         state.loading = false;
       })
       .addCase(createNewPassword.rejected, (state, action) => {
-      
         state.loading = false;
+      })
+      // Get user data
+      .addCase(getUserData.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getUserData.fulfilled, (state, action) => {
+        console.log(action.payload);
+        const { email, name, phone } = action.payload.data;
+        state.userProfileData = { email, name, phone };
+        localStorage.setItem(
+          "user-profile-data",
+          JSON.stringify(state.userProfileData)
+        );
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(getUserData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      // Update Profile Data
+      .addCase(changeMyProfile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(changeMyProfile.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        localStorage.setItem("user", JSON.stringify(state.user));
+        state.loading = false;
+        state.error = "";
+      })
+      .addCase(changeMyProfile.rejected, (state, action) => {
+        console.log(action.payload);
+        state.loading = false;
+        state.error = action.payload;
+      })
+      // Update Current Password
+      .addCase(changeMyPassword.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(changeMyPassword.fulfilled, (state, action) => {
+        localStorage.removeItem("token")
+        localStorage.removeItem("user");
+        state.loading = false;
+        state.error = "";
+        state.token= "";
+        state.user = ""
+      })
+      .addCase(changeMyPassword.rejected, (state, action) => {
+        console.log(action.payload);
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
@@ -102,6 +162,8 @@ export {
   authResetPassword,
   authResetCode,
   createNewPassword,
+  changeMyProfile,
+  changeMyPassword,
 };
 
 export default authSlice.reducer;

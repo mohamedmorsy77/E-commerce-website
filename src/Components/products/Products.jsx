@@ -7,7 +7,7 @@ import "./Products.css";
 import { fetchProducts } from "../../network/ProductApi";
 import { productsSelectors } from "../../reducers/ProductsSlice";
 import ProductsCard from "./ProductsCard";
-import { ToastContainer } from "react-toastify";
+
 import SkeletonCard from "../skeletonCard/SkeletonCard";
 function Products() {
   const products = useSelector(productsSelectors.selectAll);
@@ -28,7 +28,6 @@ function Products() {
 
   return (
     <section className="products overflow-hidden py-5">
-      <ToastContainer />
       <div className="container p-0">
         <div className="row m-0">
           <div className="col-12">

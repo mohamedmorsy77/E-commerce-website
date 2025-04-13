@@ -16,7 +16,7 @@ function Footer() {
         <div className="d-grid m-0 p-0 brd-bottom ">
           {footer.map(({ title, text }, index) => (
             <div key={index + 1} className="flex-grow-1 text-center text-md-start   mt-5 ">
-              <h6 className="heading-color fw-bold">{title}</h6>
+              <h5 className="heading-color fw-bold fs-6">{title}</h5>
               <ul className="list-unstyled mt-4 info">
                 {text.map(({ list }, index) => (
                   <li className="mt-3"  key={index + 1}><Link className="transition  text-decoration-none">{list}</Link></li>

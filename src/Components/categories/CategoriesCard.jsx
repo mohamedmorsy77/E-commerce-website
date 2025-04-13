@@ -24,7 +24,7 @@ function CategoriesCard({ category, onClick, index }) {
             alt={category.name}
           />
         </div>
-        <h5 className="text-center mt-3 text-success">{category.name}</h5>
+        <h4 className="text-center mt-3 text-success fs-6">{category.name}</h4>
       </div>
     </motion.div>
   );

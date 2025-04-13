@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { productsSelectors } from "../../reducers/ProductsSlice";
 import { cartSelectors, updateProductCount } from "../../reducers/CartSlice";
 import CartItem from "./CartItem";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { deleteAllProduct } from "../../network/CartApi";
 import Swal from "sweetalert2";
 
@@ -77,7 +77,7 @@ function Cart() {
   };
   return (
     <section className="cart py-5 px-3  mt-all">
-      <ToastContainer />
+      
       <div className="container">
         <div className="row">
           <div className="col-12 col-lg-8 mt-4">

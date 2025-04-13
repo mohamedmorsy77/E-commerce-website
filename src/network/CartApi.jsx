@@ -17,7 +17,6 @@ export const getCart = createAsyncThunk(
           },
         }
       );
-
       return response.data;
     } catch (err) {
       const errorMessage = err.response?.data?.message || "Something is wronk";
@@ -68,7 +67,6 @@ export const updateProduct = createAsyncThunk(
           },
         }
       );
-      console.log(response.data);
       return response.data;
     } catch (err) {
       const errorMessage =

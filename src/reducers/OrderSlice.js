@@ -1,5 +1,6 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import {  getAllOrders } from "../network/OrderApi";
+import { getAllOrders } from "../network/OrderApi";
+import { logOut } from "./AuthSlice";
 export const orderAdapter = createEntityAdapter({
   selectId: (order) => order._id,
 });
@@ -8,17 +9,17 @@ export const orderSlice = createSlice({
   initialState: orderAdapter.getInitialState({
     loading: false,
     error: null,
-
   }),
   reducers: {},
   extraReducers: (builder) => {
+  
     builder
+      
       //Get All Orders
       .addCase(getAllOrders.pending, (state, action) => {
         state.loading = true;
       })
       .addCase(getAllOrders.fulfilled, (state, action) => {
-
         state.loading = false;
         orderAdapter.setAll(state, action.payload);
       })

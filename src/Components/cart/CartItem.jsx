@@ -8,10 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 
 export const rowVariants = {
-  hidden: { opacity: 0, x: -100 },
-  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -200},
+  visible: { opacity: 1, x: 0},
   exit: {
-    scale: 0.95,
+    scale: 1,
     x: -500,
     transition: { duration: 0.3, ease: "easeInOut" },
   },

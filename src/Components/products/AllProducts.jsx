@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productsSelectors } from "../../reducers/ProductsSlice";
 import ProductsCard from "./ProductsCard";
-import { ToastContainer } from "react-toastify";
+
 import SkeletonCard from "../skeletonCard/SkeletonCard";
 
 function AllProducts() {
@@ -49,15 +49,15 @@ function AllProducts() {
 
   return (
     <section className="allProducts products mt-all py-5">
-      <ToastContainer />
+     
       <div className="container p-0">
-        <div className="row mt-4">
-          <div className="col-12 d-flex gap-5 align-items-center">
+        <div className="row mt-4 m-0 overflow-hidden">
+          <div className="col-12 d-flex justify-content-between gap-3 gap-sm-4 flex-column flex-sm-row align-items-center">
             <h2 className="text-success">All Products</h2>
-            <div className=" flex-grow-1">
+            <div>
               <input
                 type="text"
-                className="form-control"
+                className="form-control search transition "
                 id="exampleFormControlInput1"
                 placeholder="Search by category..."
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -66,10 +66,10 @@ function AllProducts() {
             </div>
           </div>
         </div>
-        <div className="row mt-5 d-flex justify-content-center">
+        <div className="row mt-5 d-flex justify-content-center m-0">
           <div className="col-12 ">
             <nav aria-label="Page navigation example">
-              <ul className="pagination m-0">
+              <ul className="pagination justify-content-center justify-content-sm-start m-0">
                 <li
                   className={`page-item ${currentPage === 1 ? "disabled" : ""}`}
                 >
@@ -112,7 +112,7 @@ function AllProducts() {
           </div>
         </div>
 
-        <div className="row mt-3 m-0">
+        <div className="row mt-3 m-0 overflow-hidden">
           {loading ? (
             Array.from({ length: 8 }).map((_, i) => (
               <SkeletonCard key={i + 1} />

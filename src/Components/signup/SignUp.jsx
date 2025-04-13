@@ -42,11 +42,7 @@ function SignUp() {
   });
   return (
     <section className="sign mt-all py-2">
-      <ToastContainer
-        autoClose={3000}
-        pauseOnHover={false}
-        closeButton={false}
-      />
+  
 
       <div className="container">
         <div className="row m- px-4 align-items-center">

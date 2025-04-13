@@ -8,12 +8,15 @@ import ResetCode from "../Components/resetCode/ResetCode";
 import NewPassword from "../Components/newPassword/NewPassword";
 
 import ScrollToTop from "../Components/scrollToTop/ScrollToTop";
-import AuthSpinner from "../Components/spinner/authSpinner/AuthSpinner";
-
 import ProtectedRoutes from "./ProtectedRoutes";
 
 import Checkout from "../Components/checkout/Checkout";
 import Loading from "../Components/spinner/loading/Loading";
+
+import UpdateProfileData from "../Components/profile/UpdateProfileData";
+import ChangePassword from "../Components/profile/ChangePassword";
+
+const Profile = React.lazy(() => import("../Components/profile/Profile"));
 const ProductDetails = React.lazy(() =>
   import("../Components/ProductDetails/ProductDetails")
 );
@@ -78,7 +81,7 @@ function AppRouter() {
           <Route
             path="categories"
             element={
-              <Suspense fallback={<AuthSpinner />}>
+              <Suspense fallback={<Loading />}>
                 <ProtectedRoutes>
                   <OurCategories />
                 </ProtectedRoutes>
@@ -98,7 +101,7 @@ function AppRouter() {
           <Route
             path="brands"
             element={
-              <Suspense fallback={<AuthSpinner />}>
+              <Suspense fallback={<Loading />}>
                 <ProtectedRoutes>
                   <Brands />
                 </ProtectedRoutes>
@@ -118,7 +121,7 @@ function AppRouter() {
           <Route
             path="cart"
             element={
-              <Suspense fallback={<AuthSpinner />}>
+              <Suspense fallback={<Loading />}>
                 <ProtectedRoutes>
                   <Cart />
                 </ProtectedRoutes>
@@ -128,7 +131,7 @@ function AppRouter() {
           <Route
             path="wishlist"
             element={
-              <Suspense fallback={<AuthSpinner />}>
+              <Suspense fallback={<Loading />}>
                 <ProtectedRoutes>
                   <Wishlist />
                 </ProtectedRoutes>
@@ -139,9 +142,37 @@ function AppRouter() {
           <Route
             path="allorders"
             element={
-              <Suspense fallback={<AuthSpinner />}>
-                <Orders />
+              <Suspense fallback={<Loading />}>
+                <ProtectedRoutes>
+                  <Orders />
+                </ProtectedRoutes>
               </Suspense>
+            }
+          />
+          <Route
+            path="my-profile"
+            element={
+              <Suspense fallback={<Loading />}>
+                <ProtectedRoutes>
+                  <Profile />
+                </ProtectedRoutes>
+              </Suspense>
+            }
+          />
+          <Route
+            path="change-profile-data"
+            element={
+              <ProtectedRoutes>
+                <UpdateProfileData />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="change-password"
+            element={
+              <ProtectedRoutes>
+                <ChangePassword />
+              </ProtectedRoutes>
             }
           />
         </Route>

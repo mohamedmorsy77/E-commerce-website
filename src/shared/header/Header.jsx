@@ -18,6 +18,13 @@ function Header() {
     navigate("/");
   };
 
+
+  const closeNavbar = () => {
+   const navBarCollapase = document.getElementById("navbarSupportedContent");
+   if(navBarCollapase.classList.contains("show")) {
+    navBarCollapase.classList.remove("show");
+   }
+  }
   return (
     <header className={`header transition position-fixed bg-white`}>
       <nav className="navbar navbar-expand-lg ">
@@ -49,6 +56,7 @@ function Header() {
                   className={({ isActive }) =>
                     isActive ? "nav-link  active" : "nav-link "
                   }
+                  onClick={closeNavbar}
                 >
                   Home
                 </NavLink>
@@ -59,6 +67,7 @@ function Header() {
                   className={({ isActive }) =>
                     isActive ? "nav-link  active" : "nav-link "
                   }
+                  onClick={closeNavbar}
                 >
                   Products
                 </NavLink>
@@ -69,6 +78,7 @@ function Header() {
                     isActive ? "nav-link  active" : "nav-link "
                   }
                   to="brands"
+                  onClick={closeNavbar}
                 >
                   Brands
                 </NavLink>
@@ -79,6 +89,7 @@ function Header() {
                     isActive ? "nav-link  active" : "nav-link"
                   }
                   to="categories"
+                  onClick={closeNavbar}
                 >
                   Categories
                 </NavLink>
@@ -91,12 +102,13 @@ function Header() {
                     to="allorders"
                     className="nav-link text-decoration-none position-relative"
                     aria-label="all orders"
+                    onClick={closeNavbar}
                   >
                     <i className="ri-truck-line text-success fs-1"></i>
                   </Link>
                 </li>
                 <li>
-                  <Link to="wishlist" className="nav-link text-decoration-none" aria-label="wishlist">
+                  <Link onClick={closeNavbar} to="wishlist" className="nav-link text-decoration-none" aria-label="wishlist">
                     <div className="icon-wrapper position-relative">
                       <i className="ri-heart-line text-success fs-1"></i>
                       <span className="badge bg-danger  text-white   position-absolute">
@@ -110,6 +122,7 @@ function Header() {
                     to="cart"
                     className="nav-link text-decoration-none position-relative"
                     aria-label="cart"
+                    onClick={closeNavbar}
                   >
                     <div className="icon-wrapper">
                       {" "}
@@ -151,9 +164,9 @@ function Header() {
                     <li>
                       <Link
                         className="dropdown-item transition settings"
-                        href="#"
+                        to="my-profile"
                       >
-                        Settings <i className="ri-equalizer-line"></i>
+                        Profile  <i className="ri-user-fill text-dark"></i>
                       </Link>
                     </li>
                   </ul>

@@ -4,7 +4,7 @@ import { checkoutSchema } from "../validationSchema/ValidationSchema";
 import InputField from "../reusableInputs/InputField";
 import { useDispatch, useSelector } from "react-redux";
 import { createCashOrder, createOnlineCashOrder } from "../../network/OrderApi";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import { loadStripe } from "@stripe/stripe-js";
@@ -54,7 +54,7 @@ function Checkout() {
   });
   return (
     <section className="checkout mt-all py-5 position-relative">
-      <ToastContainer />
+      
       <div className="container">
         <div className="row">
           <h2 className="text-success lh-base">

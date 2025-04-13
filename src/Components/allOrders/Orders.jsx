@@ -1,6 +1,6 @@
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
+
 import { getAllOrders } from "../../network/OrderApi";
 import { orderSelectors } from "../../reducers/OrderSlice";
 import OrderCard from "./OrderCard";
@@ -8,17 +8,16 @@ import Loading from "../spinner/loading/Loading";
 
 function Orders() {
   const allOrders = useSelector(orderSelectors.selectAll);
-  const { cartOwner } = useSelector((state) => state.cart.cartInfo.data);
   const { loading } = useSelector((state) => state.orders);
   const dispatch = useDispatch();
+  const {userId} = useSelector((state) => state.auth)
 
   useEffect(() => {
-    dispatch(getAllOrders(cartOwner));
-  }, [dispatch, cartOwner]);
+    dispatch(getAllOrders(userId));
+  }, [dispatch, userId]);
 
   return (
     <section className="mt-all py-5">
-      <ToastContainer />
       <div className="container">
         <div className="row">
           <div className="col-12">

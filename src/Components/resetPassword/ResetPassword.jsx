@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { forgetPassSchema } from "../validationSchema/ValidationSchema";
 import { useDispatch } from "react-redux";
 import { authResetPassword } from "../../network/AuthApi";
-import { toast, ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
 import InputField from "../reusableInputs/InputField";
 import { PulseLoader } from "react-spinners";
 
@@ -50,7 +50,7 @@ function ResetPassword() {
 
   return (
     <section className="sign mt-all py-5">
-      <ToastContainer />
+     
     
         <div className="container">
           <div className="row m- px-4 align-items-center">

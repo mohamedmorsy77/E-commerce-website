@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewPassword } from "../../network/AuthApi";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { newPasswordSchema } from "../validationSchema/ValidationSchema";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
@@ -36,7 +36,7 @@ function NewPassword() {
 
   return (
     <section className="sign mt-all py-5">
-      <ToastContainer />
+      
       <div className="container">
         <div>
           <h1 className="fw-bold text-muted">reset your account password</h1>

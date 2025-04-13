@@ -10,7 +10,7 @@ function ProtectedRoutes({ children }) {
   try {
     const decodeToken = jwtDecode(token);
     const isExpired = decodeToken.exp * 1000 < Date.now();
-    console.log(decodeToken.exp)
+   
     if (isExpired || decodeToken.role !== "user") {
       return <Navigate to="/login" replace />;
     }

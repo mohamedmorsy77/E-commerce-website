@@ -23,7 +23,7 @@ function Wishlist() {
 
   return (
     <section className="wishlist mt-all p-5">
-      <ToastContainer />
+      
       <div className="container">
         <div className="row text-center">
           <div className="col-12 overflow-hidden">

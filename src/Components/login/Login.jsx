@@ -1,16 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { loginSchema } from "../validationSchema/ValidationSchema";
 import login from "../../assets/images/signin-g.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authLogin } from "../../network/AuthApi";
 import InputField from "../reusableInputs/InputField";
 import { PulseLoader } from "react-spinners";
 import { getLoggedUserWishlist } from "../../network/Wishlist";
 import { getCart } from "../../network/CartApi";
 function Login() {
+  const { token } = useSelector((state) => state.auth);
   const redirectedRef = useRef(false);
   const [isLoading, SetLoading] = useState(false);
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function Login() {
       SetLoading(true);
       dispatch(authLogin(values)).then((data) => {
         if (data.payload.message === "success") {
-          dispatch(getCart())
+          dispatch(getCart());
           dispatch(getLoggedUserWishlist());
           redirectedRef.current = true;
           SetLoading(false);
@@ -35,7 +36,6 @@ function Login() {
             formikHelper.resetForm();
             toast.success("Welcome to ElectraFit");
           }, 500);
-          navigate("/");
         } else {
           SetLoading(false);
           toast.error(data.payload.message);
@@ -43,10 +43,13 @@ function Login() {
       });
     },
   });
-
+  useEffect(() => {
+    if (token) {
+      navigate("/", { replace: true });
+    }
+  },[navigate,token]);
   return (
     <section className="mt-all py-5">
-      <ToastContainer />
       <div className="container">
         <div className="row m- px-4 align-items-center">
           <div className="col-12 col-lg-6 signup-img mt-4 text-center text-lg-start">

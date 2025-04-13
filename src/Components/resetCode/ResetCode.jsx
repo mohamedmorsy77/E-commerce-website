@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { authResetCode } from "../../network/AuthApi";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 import InputField from "../reusableInputs/InputField";
 import { resetCodeSchema } from "../validationSchema/ValidationSchema";
@@ -42,7 +42,7 @@ function ResetCode() {
   }
   return (
     <section className="sign  mt-all py-5">
-      <ToastContainer />
+      
         <div className="container">
           <div>
             <h1 className="fw-bold text-muted">Enter Your Reset Code</h1>

@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 // cash payment
 export const createCashOrder = createAsyncThunk(
   "create/create-cash-order",
@@ -10,10 +9,11 @@ export const createCashOrder = createAsyncThunk(
     try {
       const response = await axios.post(
         `https://ecommerce.routemisr.com/api/v1/orders/${orderId}`,
-        { orderInfo },
+        { shippingAddress: orderInfo },
         {
           headers: {
             token: token,
+            "Content-Type": "application/json",
           },
         }
       );
@@ -22,7 +22,7 @@ export const createCashOrder = createAsyncThunk(
     } catch (err) {
       const errorMessage =
         err.response?.data?.message || "Something went wrong";
-        
+
       return rejectWithValue(errorMessage);
     }
   }
@@ -57,10 +57,10 @@ export const createOnlineCashOrder = createAsyncThunk(
 
 export const getAllOrders = createAsyncThunk(
   "Get/get-all-orders",
-  async (cartOwner, { rejectWithValue }) => {
+  async (userId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://ecommerce.routemisr.com/api/v1/orders/user/${cartOwner}`
+        `https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`
       );
       return response.data;
     } catch (err) {
@@ -69,3 +69,7 @@ export const getAllOrders = createAsyncThunk(
     }
   }
 );
+
+
+
+

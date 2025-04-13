@@ -24,7 +24,6 @@
       img {
         height: 250px;
         max-width: 100%;
-        
       }
     }
     .price {
@@ -69,6 +68,15 @@
   .slider-container {
     .slick-dots {
       visibility: hidden;
+    }
+  }
+}
+
+@media (min-width: 767px) {
+  .allProducts {
+   
+    .search:focus {
+      width: 400px;
     }
   }
 }
