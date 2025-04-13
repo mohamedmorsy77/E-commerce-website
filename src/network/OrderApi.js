@@ -4,11 +4,12 @@ import axios from "axios";
 // cash payment
 export const createCashOrder = createAsyncThunk(
   "create/create-cash-order",
-  async ({ orderId, orderInfo }, { rejectWithValue }) => {
+  async ({ cartId, orderInfo }, { rejectWithValue }) => {
+   
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/${orderId}`,
+        `https://ecommerce.routemisr.com/api/v1/orders/${cartId}`,
         { shippingAddress: orderInfo },
         {
           headers: {

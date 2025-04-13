@@ -13,7 +13,8 @@ const stripe = loadStripe(
 );
 function Checkout() {
   const navigate = useNavigate();
-  const { orderId, loading } = useSelector((state) => state.cart);
+  const { cartId, loading } = useSelector((state) => state.cart.cartInfo);
+  console.log(cartId)
   const [paymentMethod, setPaymentMethod] = useState("cash");
 
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function Checkout() {
       try {
         if (paymentMethod === "cash") {
           await dispatch(
-            createCashOrder({ orderId, orderInfo: values })
+            createCashOrder({ cartId, orderInfo: values })
           ).unwrap();
           setTimeout(() => {
             toast.success("Your Order Is Placed Successfully");
@@ -39,7 +40,7 @@ function Checkout() {
           navigate("/allorders");
         } else if (paymentMethod === "online-payment") {
           const response = await dispatch(
-            createOnlineCashOrder({ orderId, orderInfo: values })
+            createOnlineCashOrder({ cartId, orderInfo: values })
           ).unwrap();
           if (response.status === "success" && response.session?.url) {
             window.location.href = response.session.url;

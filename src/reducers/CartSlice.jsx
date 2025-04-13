@@ -41,7 +41,7 @@ export const cartSlice = createSlice({
     updateCartLoadingIds: [],
     deleteCartLoadingIds: [],
     loading: false,
-    orderId: "",
+  
     sessionUrl: "",
   }),
   reducers: {
@@ -96,7 +96,7 @@ export const cartSlice = createSlice({
           state.addProductToCartloadingIds,
           action.meta.arg
         );
-        state.orderId = action.payload.cartId;
+      
         const newProduct = action.payload?.data?.products || [];
 
         state.loading = false;
