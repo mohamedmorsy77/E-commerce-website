@@ -41,7 +41,7 @@ export const cartSlice = createSlice({
     updateCartLoadingIds: [],
     deleteCartLoadingIds: [],
     loading: false,
-  
+    online: {},
     sessionUrl: "",
   }),
   reducers: {
@@ -204,6 +204,7 @@ export const cartSlice = createSlice({
         state.loading = false;
       }) // Online Payment
       .addCase(createOnlineCashOrder.pending, (state, action) => {
+        console.log(action)
         state.loading = true;
         state.error = null;
       })
@@ -211,7 +212,7 @@ export const cartSlice = createSlice({
         state.loading = false;
         state.sessionUrl = action.payload.session.url;
         deleteAllInCart(state, cartAdapter);
-        console.log(action.payload);
+        state.online = action.payload;
       })
       .addCase(createOnlineCashOrder.rejected, (state, action) => {
         
