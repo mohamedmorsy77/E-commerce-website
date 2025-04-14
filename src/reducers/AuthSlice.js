@@ -10,7 +10,7 @@ import {
   getUserData,
 } from "../network/AuthApi";
 import { jwtDecode } from "jwt-decode";
-import { act } from "react";
+
 export const authSlice = createSlice({
   name: "auth",
   initialState: {

@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { getAllOrders } from "../network/OrderApi";
-import { logOut } from "./AuthSlice";
+
 export const orderAdapter = createEntityAdapter({
   selectId: (order) => order._id,
 });

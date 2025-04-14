@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import signUp from "../../assets/images/signup-g.svg";
 import { registerSchema } from "../validationSchema/ValidationSchema";
 import { Link, useNavigate } from "react-router-dom";

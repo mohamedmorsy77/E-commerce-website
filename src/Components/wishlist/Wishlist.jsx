@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { productsSelectors } from "../../reducers/ProductsSlice";
 import { wishListSelectors } from "../../reducers/WishlistSlice";
 import WishlistCard from "./WishlistCard";
-import { ToastContainer } from "react-toastify";
 import { AnimatePresence } from "framer-motion";
 function Wishlist() {
   const allProducts = useSelector(productsSelectors.selectAll);

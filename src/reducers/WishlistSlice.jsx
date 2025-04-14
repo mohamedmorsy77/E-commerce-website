@@ -5,7 +5,6 @@ import {
   getLoggedUserWishlist,
 } from "../network/Wishlist";
 import { removeLoadingIds } from "./CartSlice";
-import { act } from "react";
 import { logOut } from "./AuthSlice";
 export const wishlistAdapter = createEntityAdapter({
   selectId: (wishlist) => wishlist,

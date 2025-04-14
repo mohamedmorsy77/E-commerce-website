@@ -4,7 +4,7 @@ import { changeProfileDataSchema } from "../validationSchema/ValidationSchema";
 import InputField from "../reusableInputs/InputField";
 import { useDispatch, useSelector } from "react-redux";
 
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import { changeMyProfile } from "../../network/AuthApi";

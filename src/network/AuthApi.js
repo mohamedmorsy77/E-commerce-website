@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { addProductsToCart } from "./CartApi";
+
 
 export const authSignUp = createAsyncThunk(
   "auth/sign-up",
