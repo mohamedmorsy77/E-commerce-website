@@ -2,7 +2,6 @@
   "name": "e-commerce-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mohamedmorsy77.github.io/E-commerce-website",
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
     "@stripe/stripe-js": "^7.0.0",
