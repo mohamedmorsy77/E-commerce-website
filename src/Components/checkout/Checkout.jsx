@@ -15,7 +15,7 @@ function Checkout() {
   const navigate = useNavigate();
   const { loading } = useSelector((state) => state.cart);
   const { cartId } = useSelector((state) => state.cart.cartInfo);
-  console.log(cartId)
+
   const [paymentMethod, setPaymentMethod] = useState("cash");
 
   const dispatch = useDispatch();

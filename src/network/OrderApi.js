@@ -32,11 +32,11 @@ export const createCashOrder = createAsyncThunk(
 // online cash payment
 export const createOnlineCashOrder = createAsyncThunk(
   "create/create-online-cash-order",
-  async ({ orderId, orderInfo }, { rejectWithValue }) => {
+  async ({ cartId, orderInfo }, { rejectWithValue }) => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${orderId}?url=http://localhost:3000`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://electrafit7.netlify.app/#/`,
         { shippingAddress: orderInfo },
         {
           headers: {
