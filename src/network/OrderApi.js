@@ -36,7 +36,7 @@ export const createOnlineCashOrder = createAsyncThunk(
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://electrafit7.netlify.app/`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://electrafit7.netlify.app/#`,
         { shippingAddress: orderInfo },
         {
           headers: {
