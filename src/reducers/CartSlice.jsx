@@ -211,8 +211,10 @@ export const cartSlice = createSlice({
         state.loading = false;
         state.sessionUrl = action.payload.session.url;
         deleteAllInCart(state, cartAdapter);
+        console.log(action.payload);
       })
       .addCase(createOnlineCashOrder.rejected, (state, action) => {
+        
         state.loading = false;
         state.error = action.payload;
       });

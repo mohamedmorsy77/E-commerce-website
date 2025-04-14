@@ -41,7 +41,7 @@ const AllProducts = React.lazy(() =>
 
 function AppRouter() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -177,7 +177,7 @@ function AppRouter() {
           />
         </Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

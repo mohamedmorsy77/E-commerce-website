@@ -43,8 +43,10 @@ function Checkout() {
           const response = await dispatch(
             createOnlineCashOrder({ cartId, orderInfo: values })
           ).unwrap();
+          
           if (response.status === "success" && response.session?.url) {
             window.location.href = response.session.url;
+          
           } else {
             toast.error("Failed to create a payment session");
           }
