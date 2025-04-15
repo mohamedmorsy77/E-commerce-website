@@ -71,7 +71,7 @@ function Checkout() {
               <InputField
                 type="tel"
                 name="phone"
-                placeholder="Write your address here..."
+                placeholder="Write your phone here..."
                 formik={formik}
               />
               <InputField
