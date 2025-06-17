@@ -24,6 +24,7 @@ function WishlistCard({ product , index}) {
   const handleAction = async (actionMethod, successMessage) => {
     try {
       const action = await dispatch(actionMethod(product._id)).unwrap();
+      
       toast.success(action?.message || successMessage, {
         position: "top-center",
       });

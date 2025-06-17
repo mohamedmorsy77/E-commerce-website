@@ -1,15 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
+import axiosInstance from "../Api/axios-custom";
 
 export const authSignUp = createAsyncThunk(
   "auth/sign-up",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "https://ecommerce.routemisr.com/api/v1/auth/signup",
-        userData
-      );
+      const response = await axiosInstance.post("/auth/signup", userData);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -21,10 +17,7 @@ export const authLogin = createAsyncThunk(
   "auth/login",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "https://ecommerce.routemisr.com/api/v1/auth/signin",
-        userData
-      );
+      const response = await axiosInstance.post("/auth/signin", userData);
       console.log(response.data);
       return response.data;
     } catch (err) {
@@ -37,8 +30,8 @@ export const authResetPassword = createAsyncThunk(
   "auth/resetPassword",
   async (yourEmail, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
+      const response = await axiosInstance.post(
+        "/auth/forgotPasswords",
         yourEmail
       );
       console.log(response.data);
@@ -54,10 +47,9 @@ export const authResetCode = createAsyncThunk(
   "auth/resetCode",
   async (resetCode, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode",
-        { resetCode: resetCode }
-      );
+      const response = await axiosInstance.post("/auth/verifyResetCode", {
+        resetCode: resetCode,
+      });
       console.log(response.data);
       return response.data;
     } catch (err) {
@@ -70,8 +62,8 @@ export const createNewPassword = createAsyncThunk(
   "auth/createNewPassword",
   async (newPassword, { rejectWithValue }) => {
     try {
-      const response = await axios.put(
-        "https://ecommerce.routemisr.com/api/v1/auth/resetPassword",
+      const response = await axiosInstance.put(
+        "/auth/resetPassword",
         newPassword
       );
       console.log(response.data);
@@ -90,9 +82,7 @@ export const getUserData = createAsyncThunk(
   "get/get-user-data",
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `https://ecommerce.routemisr.com/api/v1/users/${userId}`
-      );
+      const response = await axiosInstance.get(`/users/${userId}`);
 
       return response.data;
     } catch (error) {
@@ -109,24 +99,18 @@ export const changeMyProfile = createAsyncThunk(
   "update/my-profile-data",
   async (newProfileData, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.put(
-        "https://ecommerce.routemisr.com/api/v1/users/updateMe/",
-        newProfileData ,
-        {
-          headers: {
-            token: token,
-            "Content-Type": "application/json",
-          },
-        }
+      const response = await axiosInstance.put(
+        "/users/updateMe/",
+        newProfileData
       );
-    
+
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.errors?.msg;
       return rejectWithValue(errorMessage);
     }
-  })
+  }
+);
 
 // Change Logged User Password
 
@@ -134,16 +118,9 @@ export const changeMyPassword = createAsyncThunk(
   "update/current-password",
   async (updatePasswordData, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.put(
-        "https://ecommerce.routemisr.com/api/v1/users/changeMyPassword",
-        updatePasswordData ,
-        {
-          headers: {
-            token: token,
-            "Content-Type": "application/json",
-          },
-        }
+      const response = await axiosInstance.put(
+        "/users/changeMyPassword",
+        updatePasswordData
       );
       console.log(response.data);
       return response.data;
@@ -152,4 +129,5 @@ export const changeMyPassword = createAsyncThunk(
       const errorMessage = error.response?.data?.errors?.msg;
       return rejectWithValue(errorMessage);
     }
-  })
+  }
+);

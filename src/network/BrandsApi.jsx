@@ -1,12 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "../Api/axios-custom";
 
 export const fetchBrands = createAsyncThunk(
   "brands/fetch-brands",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "https://ecommerce.routemisr.com/api/v1/brands"
+      const response = await axiosInstance.get(
+        "/brands"
       );
 
       return response.data;
