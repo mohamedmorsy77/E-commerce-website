@@ -10,6 +10,7 @@ export const authSignUp = createAsyncThunk(
         "https://ecommerce.routemisr.com/api/v1/auth/signup",
         userData
       );
+      
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -25,7 +26,6 @@ export const authLogin = createAsyncThunk(
         "https://ecommerce.routemisr.com/api/v1/auth/signin",
         userData
       );
-      console.log(response.data);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
