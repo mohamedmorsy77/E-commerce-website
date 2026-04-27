@@ -1,22 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../Api/axios-custom";
 
-
-// Get All Cart 
+// Get All Cart
 
 export const getCart = createAsyncThunk(
   "get/get-cart",
   async (_, { rejectWithValue }) => {
-    const token = localStorage.getItem("token");
     try {
-      const response = await axios.get(
-        "https://ecommerce.routemisr.com/api/v1/cart",
-        {
-          headers: {
-            token: token,
-          },
-        }
-      );
+      const response = await axiosInstance.get("/cart");
       return response.data;
     } catch (err) {
       const errorMessage = err.response?.data?.message || "Something is wronk";
@@ -27,19 +18,8 @@ export const getCart = createAsyncThunk(
 export const addProductsToCart = createAsyncThunk(
   "Cart/add-product-to-cart",
   async (productId, { rejectWithValue }) => {
-    const token = localStorage.getItem("token");
     try {
-      
-      const response = await axios.post(
-        "https://ecommerce.routemisr.com/api/v1/cart",
-        { productId },
-        {
-          headers: {
-            token: token,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axiosInstance.post("/cart", { productId });
 
       return response.data;
     } catch (err) {
@@ -55,17 +35,10 @@ export const addProductsToCart = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   "Cart/updateProduct",
   async ({ productId, count }, { rejectWithValue }) => {
-    const token = localStorage.getItem("token");
     try {
-      const response = await axios.put(
-        `https://ecommerce.routemisr.com/api/v1/cart/${productId}?limit=56`, 
-        { count },
-        {
-          headers: {
-            token: token,
-            "Content-Type": "application/json",
-          },
-        }
+      const response = await axiosInstance.put(
+        `https://ecommerce.routemisr.com/api/v1/cart/${productId}?limit=56`,
+        { count }
       );
       return response.data;
     } catch (err) {
@@ -81,17 +54,8 @@ export const updateProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   "cart/delete-product",
   async (productId, { rejectWithValue }) => {
-    const token = localStorage.getItem("token");
     try {
-      const response = await axios.delete(
-        `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
-        {
-          headers: {
-            token: token,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axiosInstance.delete(`/cart/${productId}`);
 
       console.log(response.data);
       return response.data || { message: "Product deleted successfully" };
@@ -107,17 +71,8 @@ export const deleteProduct = createAsyncThunk(
 export const deleteAllProduct = createAsyncThunk(
   "cart/delete-all-product",
   async (_, { rejectWithValue }) => {
-    const token = localStorage.getItem("token");
     try {
-      const response = await axios.delete(
-        `https://ecommerce.routemisr.com/api/v1/cart`,
-        {
-          headers: {
-            token: token,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axiosInstance.delete(`/cart`);
 
       console.log(response.data);
       return response.data;

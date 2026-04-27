@@ -10,7 +10,7 @@ function Wishlist() {
   const wishListIds = useSelector(wishListSelectors.selectAll);
 
   const wishlistSet = useMemo(() => new Set(wishListIds), [wishListIds]);
-
+   console.log(wishlistSet)
   //Get the products that are in the wishlist.
   const productsInWishlist = useMemo(
     () =>
